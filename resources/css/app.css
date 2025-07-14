@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+@plugin 'tailwindcss-animate';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@custom-variant dark (&:is(.dark *));
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@400;700&display=swap');
+
+/* ========== CSS Variables ========== */
+:root {
+  --background: #ffffff;
+  --foreground: #02517a;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: 'Nunito', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+}
+
+/* Dark Mode (auto) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ========== Global Styles ========== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+code, pre {
+  font-family: var(--font-mono, monospace);
+}
+
+.animate-scroll-track {
+  will-change: transform;
+  animation-play-state: running;
+}
+
+.animate-scroll-track:hover {
+  animation-play-state: paused;
+}
