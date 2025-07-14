@@ -22,7 +22,7 @@ export default function ScrollDownIndicator() {
           strokeWidth="1.5"
         />
         {/* Titik dalam mouse dengan animasi turun-naik */}
-        <circle cx="12" cy="10" r="3" fill="white">
+        <circle cx="12" cy="10" r="3" fill="red">
           <animate
             attributeName="cy"
             values="10;25;10"

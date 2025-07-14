@@ -1,17 +1,19 @@
-// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+const lineClamp = require('@tailwindcss/line-clamp')
+
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}"
+    './app/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './resources/**/*.{js,ts,jsx,tsx,blade.php}', 
   ],
   theme: {
     extend: {
       fontFamily: {
-        fontFamily: {
-        sans: ['Nunito', 'sans-serif'],
-        heading: ['Montserrat', 'sans-serif'],
+        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+        heading: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         scrollX: {
@@ -29,5 +31,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [lineClamp],
 }

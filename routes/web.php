@@ -13,7 +13,7 @@ Route::get('/tentang-kami', fn () =>
     ])
 )->name('tentang-kami');
 
-// Akses langsung ke section tertentu
+// Akses ke section
 Route::get('/tentang-kami/{section}', function ($section) {
     $validSections = ['siapa-kami', 'aktivitas-kami', "mitra", 'karir'];
 

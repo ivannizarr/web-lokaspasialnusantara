@@ -1,4 +1,4 @@
-import { CloudDownload } from "lucide-react";
+import { FileDown } from "lucide-react";
 import ScrollDownIndicator from "@/components/ScrollDownIndicator";
 import Footer from "@/components/footer";
 
@@ -14,7 +14,7 @@ const SectionSiapaKami = () => {
 
       {/* Konten utama (centered) */}
       <div className="relative z-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center justify-center min-h-screen gap-8 text-center">
-        <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-nunito drop-shadow-[0_4px_80px_rgba(0,0,0,0.9)]">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold font-nunito drop-shadow-[0_4px_80px_rgba(0,0,0,0.9)]">
           Siapa Kami
         </h2>
 
@@ -27,10 +27,10 @@ const SectionSiapaKami = () => {
 
         <button
           onClick={() => window.open('/files/profil-perusahaan.pdf', '_blank')}
-          className="mx-auto flex items-center gap-2 px-5 py-2 text-sm font-bold text-white border border-white rounded-md hover:bg-sky-800 transition-all duration-100"
+          className="mx-auto flex items-center gap-3 px-5 py-2 text-xs font-bold text-white border border-white rounded-md hover:bg-sky-800 transition-all duration-100"
         >
-          Profil Perusahaan
-          <CloudDownload size={20} className="stroke-white" />
+          Unduh Profil Perusahaan
+          <FileDown size={20} className="stroke-white" />
         </button>
       </div>
 

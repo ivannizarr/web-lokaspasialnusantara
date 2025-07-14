@@ -56,3 +56,39 @@ code, pre {
 .animate-scroll-track:hover {
   animation-play-state: paused;
 }
+
+@layer utilities {
+  .snap {
+    @apply snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth;
+  }
+  .snap-child {
+    @apply snap-start;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate-up {
+    animation: slideUp 0.8s ease-out both;
+  }
+  .animate-down {
+    animation: slideDown 0.8s ease-out both;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FFFFFF;
+  border-radius: 6px;
+}

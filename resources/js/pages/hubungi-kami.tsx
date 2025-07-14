@@ -37,19 +37,19 @@ export default function ContactPage() {
 
   return (
     <AppLayout>
-      <div className="flex flex-col min-h-screen bg-gray-200 text-black overflow-x-hidden">
+      <div className="flex flex-col min-h-screen bg-gray-600 text-white overflow-x-hidden">
         {/* HERO  */}
         <section
-          className="relative h-[100vh] bg-cover bg-center text-white flex items-center"
+          className="relative h-[100vh] bg-cover bg-center flex items-center"
           style={{ backgroundImage: "url('/head.jpg')" }}
         >
           <div className="absolute inset-0 bg-black/65" />
           <div className="relative z-10 w-full px-6 md:px-24">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-yellow-400 font-nunito mb-4">
                 Hubungi Kami
               </h1>
-              <p className="tracking-widest font-bold text-yellow-400 uppercase text-sm md:text-base">
+              <p className="tracking-widest font-bold text-white uppercase text-sm md:text-base">
                 Loka Spasial Nusantara
               </p>
             </div>
@@ -61,20 +61,20 @@ export default function ContactPage() {
         <main className="flex-grow">
           <div className="max-w-[1440px] mx-auto py-20 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row gap-16">
             {/* Info Kontak */}
-            <div className="flex-1 flex flex-col gap-10">
+            <div className="flex-1 flex flex-col text-white gap-10">
               <p className="text-lg leading-loose text-justify">
                 Apakah Anda masih ada pertanyaan setelah membaca website kami? Hubungi kami melalui
                 formulir berikut atau kirim email langsung. Kami menantikan pesan dari Anda.
               </p>
 
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-black">
+              <h2 className="text-3xl sm:text-4xl font-extrabold">
                 Hubungi Kami
               </h2>
 
               <div className="flex flex-col gap-6 text-lg">
                 <a
                   href="https://wa.me/6282188885751"
-                  className="flex items-center gap-3 hover:text-sky-800 hover:font-semibold"
+                  className="flex items-center gap-3 hover:text-yellow-400 hover:font-semibold"
                 >
                   <Phone className="w-6 h-6" /> +62-821-8888-5751
                 </a>
@@ -90,8 +90,8 @@ export default function ContactPage() {
             </div>
 
             {/* Formulir Kontak */}
-            <div className="w-full max-w-lg bg-white rounded-lg shadow p-6 border border-gray-300">
-              <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+            <div className="w-full max-w-lg bg-gray-200 rounded-lg shadow p-6 border border-gray-300">
+              <form className="flex flex-col text-black gap-5" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="name"
@@ -132,7 +132,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="bg-sky-800 text-white py-3 px-6 rounded-md font-bold hover:bg-sky-700 transition w-full sm:w-[160px]"
+                  className="bg-sky-800 text-white py-2 px-5 rounded-md font-bold hover:bg-sky-700 transition w-full sm:w-[160px]"
                 >
                   Kirim
                 </button>

@@ -14,7 +14,7 @@ interface SlideItem {
 const slides: SlideItem[] = [
   {
     image: '/bg1.jpg',
-    title: 'INTERNET OF THINGS (IOT)',
+    title: 'INTERNET OF THINGS (IoT)',
     description:
       'Integrasi monitoring kualitas kerja, efisiensi waktu kerja, dan visualisasi data menjadi tren yang kami kerjakan saat ini. Berikan konsep yang Anda miliki, kami akan membantu merealisasikan pengembangan IoT Anda.',
     button: 'Selengkapnya',

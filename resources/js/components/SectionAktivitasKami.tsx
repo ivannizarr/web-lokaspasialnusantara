@@ -32,12 +32,14 @@ const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
   return (
     <section
       id={id}
-      className="relative z-10 pt-15 w-full bg-gray-600 text-white px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
+      className="relative z-10 pt-8 w-full bg-gray-600 text-white px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
     >
-      <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold font-nunito">
+      <div className="container mx-auto border-b border-white pb-6">
+      <h2 className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold font-nunito">
         Aktivitas Kami
       </h2>
-
+      </div>
+      
       <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl font-medium max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl leading-relaxed">
        Kami berkontribusi dalam proyek strategis baik regional maupun nasional yang diinisiasi oleh
         pemerintah, swasta, organisasi, ataupun perorangan untuk mendukung pencapaian kinerja yang telah

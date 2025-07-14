@@ -21,6 +21,14 @@ const menus: MenuItem[] = [
     ],
   },
   {
+    label: 'Informasi',
+    href: '',
+    children: [
+      { label: 'Publikasi', href: '/informasi/publikasi' },
+      { label: 'Hasil Proyek', href: '/informasi/hasil-proyek' },
+    ],
+  },
+  {
     label: 'Layanan',
     href: '',
     children: [
@@ -32,14 +40,6 @@ const menus: MenuItem[] = [
       { label: 'Telematika', href: '/layanan/#telematika' },
       { label: 'Website Aplikasi', href: '/layanan/#website-aplikasi' },
       { label: 'Layanan Lainnya', href: '/layanan/#layanan-lainnya' },
-    ],
-  },
-  {
-    label: 'Informasi',
-    href: '',
-    children: [
-      { label: 'Publikasi', href: '/informasi/publikasi' },
-      { label: 'Hasil Proyek', href: '/informasi/hasil-proyek' },
     ],
   },
   {
