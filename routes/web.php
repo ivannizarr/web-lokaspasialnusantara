@@ -7,29 +7,30 @@ use Inertia\Inertia;
 Route::get('/', fn () => Inertia::render('home'))->name('home');
 
 // Tentang Kami
-Route::get('/tentang-kami', fn () => 
-    Inertia::render('tentang-kami/index', [
-        'activeSection' => null
-    ])
+Route::get('/tentang-kami', fn () =>
+    Inertia::render('tentang-kami/index', ['activeSection' => null])
 )->name('tentang-kami');
 
-// Akses ke section
 Route::get('/tentang-kami/{section}', function ($section) {
-    $validSections = ['siapa-kami', 'aktivitas-kami', "mitra", 'karir'];
+    $valid = ['siapa-kami', 'aktivitas-kami', 'mitra', 'karir', 'administrasi'];
+    abort_unless(in_array($section, $valid), 404);
 
-    if (!in_array($section, $validSections)) {
-        abort(404);
-    }
-
-    return Inertia::render('tentang-kami/index', [
-        'activeSection' => $section
-    ]);
+    return Inertia::render('tentang-kami/index', ['activeSection' => $section]);
 })->name('tentang-kami.section');
 
 // Layanan
 Route::get('/layanan', fn () =>
-    Inertia::render('layanan/index')
+    Inertia::render('layanan/index', ['activeSection' => null])
 )->name('layanan');
+
+Route::get('/layanan/{section}', function ($section) {
+    $valid = ['foto-udara', 'internet-of-things', 'inspeksi-teknik', 'penelitian', 'agrikultur', 'telematika', 'website-aplikasi', 'layanan-lainnya'];
+    abort_unless(in_array($section, $valid), 404);
+
+    return Inertia::render('layanan/index', ['activeSection' => $section]);
+})->name('layanan.section');
+
+
 
 // Informasi
 Route::prefix('informasi')->name('informasi.')->group(function () {

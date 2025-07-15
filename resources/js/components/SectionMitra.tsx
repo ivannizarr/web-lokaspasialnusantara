@@ -30,10 +30,10 @@ const SectionMitraKami = ({ id = "mitra" }: { id?: string }) => {
   return (
     <section
       id={id}
-      className="relative z-10 pt-8 w-full bg-gray-200 text-black px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
+      className="relative z-10 pt-8 w-full bg-gray-500 px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
     >
-      <div className="container mx-auto border-b border-black pb-6">
-      <h2 className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold font-nunito">
+      <div className="container mx-auto border-b border-white pb-6">
+      <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-6xl text-center text-yellow-400 font-extrabold font-nunito">
         Mitra Kami
       </h2>
       </div>
@@ -42,7 +42,7 @@ const SectionMitraKami = ({ id = "mitra" }: { id?: string }) => {
         Kami menjalin kemitraan dengan berbagai latar belakang pemangku kepentingan. Kami membuka kolaborasi untuk meningkatkan perekonomian, pengetahuan, dan kesadaran masyarakat, serta membuat bumi lebih baik.
       </p>
 
-      <div className="flex flex-col gap-4 w-full max-w-7xl">
+      <div className="cursor-pointer flex flex-col gap-4 w-full max-w-7xl">
         <PartnerSliderRow logos={partnerImages1} />
         <PartnerSliderRow logos={partnerImages2} reverse />
       </div>

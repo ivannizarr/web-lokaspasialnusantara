@@ -1,6 +1,5 @@
-import AppLayout from '@/layouts/app-layout'      
-import { useRef, useState, ChangeEvent, FormEvent } from 'react'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import AppLayout from '@/layouts/app-layout' 
+import { Head } from '@inertiajs/react'      
 import ScrollDownIndicator from '@/components/ScrollDownIndicator'
 import SectionPublikasi from '@/components/SectionPublikasi'
 import Footer2 from '@/components/footer-v2'
@@ -8,6 +7,7 @@ import Footer2 from '@/components/footer-v2'
 export default function PublikasiPage() {
   return (
     <AppLayout>
+      <Head title="Publikasi" />
       <div className="flex flex-col min-h-screen bg-gray-600  overflow-x-hidden">
         {/* HERO */}
         <section

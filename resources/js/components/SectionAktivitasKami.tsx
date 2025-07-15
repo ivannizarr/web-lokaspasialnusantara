@@ -35,7 +35,7 @@ const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
       className="relative z-10 pt-8 w-full bg-gray-600 text-white px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
     >
       <div className="container mx-auto border-b border-white pb-6">
-      <h2 className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold font-nunito">
+      <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-6xl text-center text-yellow-400 font-extrabold font-nunito">
         Aktivitas Kami
       </h2>
       </div>

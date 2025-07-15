@@ -16,7 +16,7 @@ const ReCaptchaWrapper = forwardRef<ReCaptchaRef>((_, ref) => {
 
   return (
     <ReCAPTCHA
-      sitekey="6LeQnXsrAAAAANFieN4itVexbew087KcJDTWTLXn" // ganti pakai sitekey aslimu
+      sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // ganti pakai sitekey asli
       ref={recaptchaRef}
     />
   )

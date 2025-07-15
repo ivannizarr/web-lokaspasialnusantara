@@ -1,6 +1,5 @@
 import AppLayout from '@/layouts/app-layout'      
-import { useRef, useState, ChangeEvent, FormEvent } from 'react'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Head } from '@inertiajs/react'
 import ScrollDownIndicator from '@/components/ScrollDownIndicator'
 import SectionHasilProyek from '@/components/SectionHasilProyek'
 import Footer2 from '@/components/footer-v2'
@@ -8,6 +7,7 @@ import Footer2 from '@/components/footer-v2'
 export default function HasilProyekPage() {
   return (
     <AppLayout>
+      <Head title="Hasil Proyek" />
       <div className="flex flex-col min-h-screen bg-gray-600 text-white overflow-x-hidden">
         {/* HERO */}
         <section

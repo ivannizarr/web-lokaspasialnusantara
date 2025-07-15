@@ -1,69 +1,78 @@
-import { useState } from "react";
-import { MapPin, CalendarDays, Search } from "lucide-react";
+'use client';
 
-const jobs = [
+import { useState, useEffect } from 'react';
+import { MapPin, CalendarDays, Search } from 'lucide-react';
+
+// TODO: Ganti nanti dengan fetch ke API
+const dummyJobs = [
   {
-    title: "Surveyor Perikanan",
-    location: "Denpasar, Bali",
-    year: "2024",
-    type: "Full Time",
-    status: "Open",
+    title: 'Surveyor Perikanan',
+    location: 'Denpasar, Bali',
+    year: '2024',
+    type: 'Full Time',
+    status: 'Open',
     description:
-      "Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey.",
+      'Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey.',
   },
   {
-    title: "Surveyor Perikanan",
-    location: "Denpasar, Bali",
-    year: "2024",
-    type: "Part Time",
-    status: "Closed",
+    title: 'Surveyor Perikanan',
+    location: 'Denpasar, Bali',
+    year: '2024',
+    type: 'Part Time',
+    status: 'Closed',
     description:
-      "Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey.",
+      'Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey.',
   },
   {
-    title: "Surveyor Perikanan",
-    location: "Denpasar, Bali",
-    year: "2024",
-    type: "Full Time",
-    status: "Closed",
+    title: 'Surveyor Perikanan',
+    location: 'Denpasar, Bali',
+    year: '2024',
+    type: 'Full Time',
+    status: 'Closed',
     description:
-      "Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey.",
+      'Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey.',
   },
   {
-    title: "Surveyor Perikanan",
-    location: "Denpasar, Bali",
-    year: "2024",
-    type: "Magang",
-    status: "Open",
+    title: 'Surveyor Perikanan',
+    location: 'Denpasar, Bali',
+    year: '2024',
+    type: 'Magang',
+    status: 'Open',
     description:
-      "Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey.",
+      'Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey.',
   },
-  // Tambah lagi data dummy kalau perlu...
 ];
 
-export default function JobListSection({ id = "karir" }: { id?: string }) {
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
+const jobTypes = ['Full Time', 'Part Time', 'Magang'] as const;
 
-  // Filter lowongan berdasarkan checkbox & pencarian
+export default function JobListSection({ id = 'karir' }: { id?: string }) {
+  const [jobs, setJobs] = useState(dummyJobs); // nanti replace ini pakai API
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const toggleType = (type: string) => {
+    setSelectedTypes((prev) =>
+      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+    );
+  };
+
   const filteredJobs = jobs.filter(
     (job) =>
       (selectedTypes.length === 0 || selectedTypes.includes(job.type)) &&
       job.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const toggleType = (type: string) => {
-    setSelectedTypes((prev) =>
-      prev.includes(type)
-        ? prev.filter((t) => t !== type)
-        : [...prev, type]
-    );
-  };
+  // Hitung jumlah job per kategori
+  const jobCounts = jobTypes.reduce<Record<string, number>>((acc, type) => {
+    acc[type] = jobs.filter((job) => job.type === type).length;
+    return acc;
+  }, {});
 
   return (
-    <section id={id} className="bg-gray-600 text-white py-8 px-6 lg:px-12">
+    <section id={id} 
+    className="bg-gray-600 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16">
       <div className="max-w-screen-xl mx-auto space-y-12">
-        <h2 className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold font-nunito border-b border-white pb-6">
+        <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-6xl text-center text-yellow-400 font-extrabold font-nunito border-b border-white pb-6">
           Lowongan Kami
         </h2>
 
@@ -74,11 +83,11 @@ export default function JobListSection({ id = "karir" }: { id?: string }) {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-60 w-5 h-5" />
               <input
-                type="text"
-                placeholder="Search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-4 py-2 w-full bg-transparent border border-white rounded-md text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-sky-800"
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-4 py-2 w-full bg-transparent border border-white rounded-md text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-sky-800"
               />
             </div>
 
@@ -86,53 +95,61 @@ export default function JobListSection({ id = "karir" }: { id?: string }) {
             <div>
               <h3 className="font-semibold mb-2">Kategori</h3>
               <div className="space-y-2">
-                {["Full Time", "Part Time", "Magang"].map((type) => (
+                {jobTypes.map((type) => (
                   <label
                     key={type}
-                    className="flex items-center gap-2 cursor-pointer text-sm"
+                    className="flex items-center justify-between cursor-pointer text-sm border border-white/10 px-3 py-2 rounded-md hover:bg-white/10 transition"
                   >
-                    <input
+                    <div className="flex items-center gap-2">
+                      <input
                       type="checkbox"
                       className="form-checkbox bg-gray-700 text-sky-800 border-zinc-600"
                       checked={selectedTypes.includes(type)}
                       onChange={() => toggleType(type)}
-                    />
-                    <span className="text-white font-medium">{type}</span>
+                      />
+                      <span className="text-white font-medium">{type}</span>
+                    </div>
+                    <span className="text-white text-sm font-semibold">{jobCounts[type]}</span>
                   </label>
                 ))}
               </div>
             </div>
           </aside>
 
-          {/* List lowongan + pagination */}
+          {/* Daftar lowongan */}
           <div className="space-y-12">
-            {/* Grid cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {filteredJobs.length === 0 ? (
-                <p className="col-span-full text-white/70 text-xl">
-                  Tidak ada lowongan yang sesuai.
+                <p className="col-span-full text-white/70 text-lg">
+                  Tidak ada lowongan yang cocok.
                 </p>
               ) : (
                 filteredJobs.map((job, idx) => (
                   <div
                     key={idx}
-                    className="bg-black border border-white/20 rounded-lg p-6 flex flex-col justify-between gap-4 hover:border-sky-800 transition-all"
+                    className="bg-gray-900 border border-white/20 rounded-lg p-6 flex flex-col justify-between gap-4 hover:border-sky-800 transition-all"
                   >
                     <div className="space-y-3">
-                      <div className="flex justify-between items-start">
+                      <div className="flex justify-between items-start flex-wrap gap-2">
                         <h3 className="text-xl font-bold font-nunito">
                           {job.title}
                         </h3>
                         <div className="flex gap-2">
-                        <span className="bg-sky-800 text-xs px-3 py-1 rounded-full">
-                          {job.type}
-                        </span>
-                        <span className="text-xs bg-green-500 px-3 py-1 rounded-full">
-                          {job.status}
-                        </span>
+                          <span className="bg-sky-800 text-xs px-3 py-1 rounded-full">
+                            {job.type}
+                          </span>
+                          <span
+                            className={`text-xs px-3 py-1 rounded-full ${
+                              job.status === 'Open'
+                                ? 'bg-green-600'
+                                : 'bg-orange-400'
+                            }`}
+                          >
+                            {job.status}
+                          </span>
+                        </div>
                       </div>
-                      </div>
-                      <p className="text-sm leading-relaxed text-white/90">
+                      <p className="text-sm leading-relaxed text-white">
                         {job.description}
                       </p>
                     </div>
@@ -148,15 +165,23 @@ export default function JobListSection({ id = "karir" }: { id?: string }) {
                       </div>
                     </div>
 
-                    <button className="mt-4 border border-white text-white py-2 px-4 rounded-md hover:bg-sky-800 transition-all text-sm">
-                      Lamar Sekarang
-                    </button>
+                    <button
+                    onClick={() =>
+                      window.open(
+                        'mailto:admin@lokaspasial.com?subject=Lamar%20Pekerjaan&body=Halo%20Tim%20LSN,%0ASaya%20tertarik%20melamar%20pekerjaan%20ini.%0ATerima%20kasih.',
+                        '_blank'
+                      )
+                    }
+                    className="cursor-pointer mt-4 border border-white text-white py-2 px-4 rounded-md hover:bg-sky-800 transition-all text-sm"
+                  >
+                    Lamar Sekarang
+                  </button>
                   </div>
                 ))
               )}
             </div>
 
-            {/* Pagination */}
+            {/* Pagination (static - placeholder) */}
             <div className="flex justify-center items-center gap-2">
               <button className="text-sm text-white hover:text-yellow-400">
                 Sebelumnya

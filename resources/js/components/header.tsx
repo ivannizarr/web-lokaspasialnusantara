@@ -29,18 +29,18 @@ const menus: MenuItem[] = [
     ],
   },
   {
-    label: 'Layanan',
-    href: '',
-    children: [
-      { label: 'Foto Udara', href: '/layanan/#foto-udara' },
-      { label: 'Internet of Things', href: '/layanan/#internet-of-things' },
-      { label: 'Inspeksi Teknik', href: '/layanan/#inspeksi-teknik' },
-      { label: 'Penelitian', href: '/layanan/#penelitian' },
-      { label: 'Agrikultur', href: '/layanan/#agrikultur' },
-      { label: 'Telematika', href: '/layanan/#telematika' },
-      { label: 'Website Aplikasi', href: '/layanan/#website-aplikasi' },
-      { label: 'Layanan Lainnya', href: '/layanan/#layanan-lainnya' },
-    ],
+  label: 'Layanan',
+  href: '',
+  children: [
+    { label: 'Foto Udara', href: '/layanan/foto-udara' },
+    { label: 'Internet of Things', href: '/layanan/internet-of-things' },
+    { label: 'Inspeksi Teknik', href: '/layanan/inspeksi-teknik' },
+    { label: 'Penelitian', href: '/layanan/penelitian' },
+    { label: 'Agrikultur', href: '/layanan/agrikultur' },
+    { label: 'Telematika', href: '/layanan/telematika' },
+    { label: 'Website Aplikasi', href: '/layanan/website-aplikasi' },
+    { label: 'Layanan Lainnya', href: '/layanan/layanan-lainnya' },
+  ],
   },
   {
     label: 'Produk',
@@ -162,7 +162,7 @@ const Header = () => {
             <span className="cursor-pointer font-bold hover:text-yellow-400">English</span>
           </div>
           {!isLoggedIn ? (
-            <button className="font-nunito rounded-lg border border-white px-8 py-1 text-sm font-semibold text-white transition hover:bg-sky-800">
+            <button className="cursor-pointer font-nunito rounded-lg border border-white px-8 py-1 text-sm font-semibold text-white transition hover:bg-sky-800">
               Login
             </button>
           ) : (
@@ -180,7 +180,7 @@ const Header = () => {
         </button>
       </div>
 
-      {/* ── MOBILE OVERLAY & DRAWER ─────────────────────── */}
+      {/* MOBILE OVERLAY */}
       {menuOpen && (
         <>
           <div className="fixed inset-0 z-[60] bg-black/50" onClick={() => setMenuOpen(false)} />

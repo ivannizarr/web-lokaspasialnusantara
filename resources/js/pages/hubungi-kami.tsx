@@ -1,3 +1,4 @@
+import { Head } from '@inertiajs/react' 
 import AppLayout from '@/layouts/app-layout'      
 import { useRef, useState, ChangeEvent, FormEvent } from 'react'
 import { Phone, Mail, MapPin } from 'lucide-react'
@@ -37,6 +38,7 @@ export default function ContactPage() {
 
   return (
     <AppLayout>
+      <Head title="Hubungi Kami" />
       <div className="flex flex-col min-h-screen bg-gray-600 text-white overflow-x-hidden">
         {/* HERO  */}
         <section
@@ -73,8 +75,7 @@ export default function ContactPage() {
 
               <div className="flex flex-col gap-6 text-lg">
                 <a
-                  href="https://wa.me/6282188885751"
-                  className="flex items-center gap-3 hover:text-yellow-400 hover:font-semibold"
+                  className="flex items-center gap-3"
                 >
                   <Phone className="w-6 h-6" /> +62-821-8888-5751
                 </a>
@@ -90,8 +91,8 @@ export default function ContactPage() {
             </div>
 
             {/* Formulir Kontak */}
-            <div className="w-full max-w-lg bg-gray-200 rounded-lg shadow p-6 border border-gray-300">
-              <form className="flex flex-col text-black gap-5" onSubmit={handleSubmit}>
+            <div className="w-full max-w-lg bg-gray-900 rounded-lg shadow p-6 border border-sky-800">
+              <form className="flex flex-col text-white gap-5" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="name"
@@ -132,7 +133,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="bg-sky-800 text-white py-2 px-5 rounded-md font-bold hover:bg-sky-700 transition w-full sm:w-[160px]"
+                  className="bg-sky-800 text-white py-2 px-5 cursor-pointer rounded-md font-bold hover:bg-sky-700 transition w-full sm:w-[160px]"
                 >
                   Kirim
                 </button>

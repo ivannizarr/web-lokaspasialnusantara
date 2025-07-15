@@ -1,34 +1,42 @@
 'use client'
-
+import { Link } from '@inertiajs/react';
 import { useState } from 'react'
 import { Search } from 'lucide-react'
 
-const kategoriList = ['Foto Udara', 'Internet of Things', 'Inspeksi Teknik','Penelitian','Agrikultur','Telematika','Website Aplikasi','Layanan Lainnya',] as const
+// Daftar kategori berdasarkan tag yang digunakan
+const kategoriList = [
+  'Foto Udara',
+  'Internet of Things',
+  'Inspeksi Teknik',
+  'Penelitian',
+  'Agrikultur',
+  'Telematika',
+  'Website Aplikasi',
+  'Layanan Lainnya',
+] as const
 type Kategori = (typeof kategoriList)[number]
 
+// Dummy data publikasi
 const dummyPublikasi = [
   {
     title: 'Pengembangan Sistem Informasi Jaga Laut',
     description:
       'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
-    tags: ['Web Aplikasi', 'Inspeksi Teknik'],
-    category: 'Buku',
+    tags: ['Website Aplikasi', 'Inspeksi Teknik'],
     image: '/img/web-app.jpg',
   },
   {
     title: 'Modul Pelatihan Drone',
     description:
       'Panduan teknis operasional drone untuk kegiatan pemetaan wilayah pesisir serta pelatihan penggunaan teknologi udara dalam mendukung survei dan monitoring wilayah laut.',
-    tags: ['Foto Udara', 'Pelatihan'],
-    category: 'Modul Pelatihan',
+    tags: ['Foto Udara', 'Penelitian'],
     image: '/img/foto-udara.jpg',
   },
   {
     title: 'Peraturan Zonasi Laut',
     description:
       'Regulasi strategis mengenai tata kelola wilayah laut dan zonasi pemanfaatan ruang laut yang mendukung pengambilan keputusan berbasis spasial dan kebijakan.',
-    tags: ['Kebijakan', 'Zonasi', 'GIS'],
-    category: 'Peraturan',
+    tags: ['Internet of Things', 'Penelitian'],
     image: '/img/iot.jpg',
   },
 ]
@@ -37,7 +45,7 @@ export default function SectionPublikasi() {
   const [filters, setFilters] = useState<Kategori[]>([])
   const [search, setSearch] = useState('')
 
-  const handleFilterChange = (kategori: Kategori) => {
+  const toggleFilter = (kategori: Kategori) => {
     setFilters((prev) =>
       prev.includes(kategori)
         ? prev.filter((item) => item !== kategori)
@@ -45,12 +53,21 @@ export default function SectionPublikasi() {
     )
   }
 
-  const filteredData = dummyPublikasi.filter((item) => {
-    const matchFilter =
-      filters.length === 0 || filters.includes(item.category as Kategori)
+  // Hitung jumlah per kategori
+  const tagCounts = kategoriList.reduce<Record<string, number>>((acc, tag) => {
+    acc[tag] = dummyPublikasi.filter((item) => item.tags.includes(tag)).length
+    return acc
+  }, {})
+
+  const filtered = dummyPublikasi.filter((item) => {
     const matchSearch =
       search === '' || item.title.toLowerCase().includes(search.toLowerCase())
-    return matchFilter && matchSearch
+
+    const matchFilter =
+      filters.length === 0 ||
+      filters.some((f) => item.tags.includes(f as string))
+
+    return matchSearch && matchFilter
   })
 
   return (
@@ -66,9 +83,10 @@ export default function SectionPublikasi() {
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10">
-          {/* Sidebar Filter */}
-          <aside className="w-full lg:w-64 space-y-6 shrink-0">
+        <div className="grid lg:grid-cols-[1fr_3fr] gap-10">
+          {/* Sidebar filter */}
+          <aside className="space-y-8">
+            {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-60 w-5 h-5" />
               <input
@@ -80,37 +98,47 @@ export default function SectionPublikasi() {
               />
             </div>
 
-            <div className="space-y-2">
-              <h3 className="text-lg font-bold">Kategori</h3>
-              {kategoriList.map((cat) => (
-                <label
-                  key={cat}
-                  className="flex items-center gap-2 cursor-pointer text-sm"
-                >
-                  <input
-                    type="checkbox"
-                    checked={filters.includes(cat)}
-                    onChange={() => handleFilterChange(cat)}
-                    className="form-checkbox bg-gray-700 text-sky-800 border-zinc-600"
-                  />
-                  <span className="text-white font-medium">{cat}</span>
-                </label>
-              ))}
+            {/* Kategori filter */}
+            <div>
+              <h3 className="font-semibold mb-2">Kategori</h3>
+              <div className="flex flex-col gap-2">
+                {kategoriList.map((kategori) => (
+                  <label
+                    key={kategori}
+                    className="flex items-center justify-between cursor-pointer text-sm border border-white/10 px-3 py-2 rounded-md hover:bg-white/10 transition"
+                  >
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={filters.includes(kategori)}
+                        onChange={() => toggleFilter(kategori)}
+                        className="form-checkbox bg-gray-700 text-sky-800 border-zinc-600"
+                      />
+                      <span className="text-white font-medium">
+                        {kategori}
+                      </span>
+                    </div>
+                    <span className="text-white text-xs rounded-full px-2 py-[1px] font-bold">
+                      {tagCounts[kategori]}
+                    </span>
+                  </label>
+                ))}
+              </div>
             </div>
           </aside>
 
-          {/* Konten Kartu */}
-          <div className="flex-1">
-            {filteredData.length === 0 ? (
-              <p className="text-white text-xl">
-                Tidak ada yang cocok.
-              </p>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-                {filteredData.map((item, idx) => (
+          {/* Kartu konten Proyek*/}
+          <div className="space-y-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+              {filtered.length === 0 ? (
+                <p className="text-white text-xl col-span-full">
+                  Tidak ada yang cocok.
+                </p>
+              ) : (
+                filtered.map((item, idx) => (
                   <div
                     key={idx}
-                    className="h-full border border-white/10 bg-black rounded-lg overflow-hidden shadow hover:shadow-lg transition-all flex flex-col"
+                    className="h-full border border-white/10 bg-gray-900 rounded-lg overflow-hidden shadow hover:shadow-lg transition-all flex flex-col"
                   >
                     <img
                       src={item.image}
@@ -136,19 +164,19 @@ export default function SectionPublikasi() {
                           </span>
                         ))}
                       </div>
-                      <a
-                        href="#"
-                        className="mt-1 inline-flex items-center text-base font-semibold text-white hover:text-yellow-400"
-                      >
-                        Lihat Proyek →
-                      </a>
+                      <Link
+                      href={item.link}
+                      className="cursor-pointer text-center font-nunito font-semibold mt-1 border border-white text-white py-2 px-4 rounded-md hover:bg-sky-800 transition-all text-sm"
+                    >
+                      Lihat Proyek
+                    </Link>
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
+                ))
+              )}
+            </div>
 
-            {/* Pagination */}
+            {/* Pagination (placeholder) */}
             <div className="flex justify-center items-center gap-2 mt-10">
               <button className="text-sm text-white hover:text-yellow-400">
                 Sebelumnya

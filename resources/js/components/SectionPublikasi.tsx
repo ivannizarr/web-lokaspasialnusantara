@@ -1,5 +1,5 @@
 'use client'
-
+import { Link } from '@inertiajs/react';
 import { useState } from 'react'
 import { Search } from 'lucide-react'
 
@@ -14,6 +14,7 @@ const dummyPublikasi = [
     tags: ['Web Aplikasi', 'Inspeksi Teknik'],
     category: 'Buku',
     image: '/img/web-app.jpg',
+    link: '/publikasi/pengembangan-sistem-informasi-jaga-laut',
   },
   {
     title: 'Modul Pelatihan Drone',
@@ -22,6 +23,7 @@ const dummyPublikasi = [
     tags: ['Foto Udara', 'Pelatihan'],
     category: 'Modul Pelatihan',
     image: '/img/foto-udara.jpg',
+    
   },
   {
     title: 'Peraturan Zonasi Laut',
@@ -53,6 +55,11 @@ export default function SectionPublikasi() {
     return matchFilter && matchSearch
   })
 
+  const categoryCount = kategoriList.reduce<Record<string, number>>((acc, curr) => {
+    acc[curr] = dummyPublikasi.filter((p) => p.category === curr).length
+    return acc
+  }, {})
+
   return (
     <section
       id="publikasi"
@@ -66,9 +73,10 @@ export default function SectionPublikasi() {
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10">
-          {/* Sidebar Filter */}
-          <aside className="w-full lg:w-64 space-y-6 shrink-0">
+        <div className="grid lg:grid-cols-[1fr_3fr] gap-10">
+          {/* Sidebar filter */}
+          <aside className="space-y-8">
+            {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-60 w-5 h-5" />
               <input
@@ -80,37 +88,42 @@ export default function SectionPublikasi() {
               />
             </div>
 
+            {/* Kategori */}
             <div className="space-y-2">
-              <h3 className="text-lg font-bold">Kategori</h3>
-              {kategoriList.map((cat) => (
-                <label
-                  key={cat}
-                  className="flex items-center gap-2 cursor-pointer text-sm"
-                >
-                  <input
-                    type="checkbox"
-                    checked={filters.includes(cat)}
-                    onChange={() => handleFilterChange(cat)}
-                    className="form-checkbox bg-gray-700 text-sky-800 border-zinc-600"
-                  />
-                  <span className="text-white font-medium">{cat}</span>
-                </label>
-              ))}
+              <h3 className="text-lg font-bold text-white">Kategori</h3>
+              <div className="flex flex-col gap-2">
+                {kategoriList.map((cat) => (
+                  <label
+                    key={cat}
+                    className="flex items-center justify-between cursor-pointer text-sm border border-white/10 px-3 py-2 rounded-md hover:bg-white/10 transition"
+                  >
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={filters.includes(cat)}
+                        onChange={() => handleFilterChange(cat)}
+                        className="form-checkbox bg-gray-700 text-sky-800 border-zinc-600"
+                      />
+                      <span className="text-white font-medium">{cat}</span>
+                    </div>
+                    <span className="text-white/70 text-sm font-bold">{categoryCount[cat]}</span>
+                  </label>
+                ))}
+              </div>
             </div>
           </aside>
 
-          {/* Konten Kartu */}
-          <div className="flex-1">
+          {/* Konten + Pagination */}
+          <div className="flex-1 space-y-12">
+            {/* Konten Kartu */}
             {filteredData.length === 0 ? (
-              <p className="text-white text-xl">
-                Tidak ada publikasi yang cocok.
-              </p>
+              <p className="text-white text-xl">Tidak ada publikasi yang cocok.</p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                 {filteredData.map((item, idx) => (
                   <div
                     key={idx}
-                    className="h-full border border-white/10 bg-black rounded-lg overflow-hidden shadow hover:shadow-lg transition-all flex flex-col"
+                    className="h-full border border-white/10 bg-gray-900 rounded-lg overflow-hidden shadow hover:shadow-lg transition-all flex flex-col"
                   >
                     <img
                       src={item.image}
@@ -136,12 +149,12 @@ export default function SectionPublikasi() {
                           </span>
                         ))}
                       </div>
-                      <a
-                        href="#"
-                        className="mt-2 inline-flex items-center text-sm font-semibold text-white hover:text-yellow-400"
-                      >
-                        Lihat Proyek →
-                      </a>
+                      <Link
+                      href={item.link}
+                      className="cursor-pointer text-center mt-1 border border-white text-white py-2 px-4 rounded-md hover:bg-sky-800 transition text-sm"
+                    >
+                      Selengkapnya
+                    </Link>
                     </div>
                   </div>
                 ))}
@@ -149,7 +162,7 @@ export default function SectionPublikasi() {
             )}
 
             {/* Pagination */}
-            <div className="flex justify-center items-center gap-2 mt-10">
+            <div className="flex justify-center items-center gap-2">
               <button className="text-sm text-white hover:text-yellow-400">
                 Sebelumnya
               </button>
