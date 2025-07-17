@@ -73,7 +73,7 @@ export default function ContactPage() {
                 Hubungi Kami
               </h2>
 
-              <div className="flex flex-col gap-6 text-lg">
+              <div className="flex flex-col gap-6 text-base">
                 <a
                   className="flex items-center gap-3"
                 >
@@ -133,7 +133,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="bg-sky-800 text-white py-2 px-5 cursor-pointer rounded-md font-bold hover:bg-sky-700 transition w-full sm:w-[160px]"
+                  className="bg-sky-800 text-white py-2 px-5 cursor-pointer rounded-md font-semibold hover:bg-sky-900 transition w-full"
                 >
                   Kirim
                 </button>

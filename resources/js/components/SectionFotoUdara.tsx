@@ -13,7 +13,7 @@ const SectionAgrikultur = () => {
       {/* Konten utama (centered + bg transparan gelap) */}
       <div className="relative z-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center justify-center min-h-screen gap-8 text-center">
         <div className="mx-2 w-full max-w-5xl rounded-2xl bg-gray-950/50 px-6 py-6 text-white">
-          <h2 className="font-montserrat mb-2 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-yellow-400 drop-shadow-[0_4px_80px_rgba(0,0,0,0.9)]">
+          <h2 className="font-montserrat mb-2 text-2xl sm:text-3xl md:text-3xl font-bold tracking-tight text-yellow-400 drop-shadow-[0_4px_80px_rgba(0,0,0,0.9)]">
             FOTO UDARA
           </h2>
 

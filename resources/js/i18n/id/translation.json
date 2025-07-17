@@ -1,0 +1,36 @@
+{
+  "menu": {
+    "tentangKami": "Tentang Kami",
+    "siapaKami": "Siapa Kami",
+    "aktivitasKami": "Aktivitas Kami",
+    "mitra": "Mitra",
+    "karir": "Karir",
+    "administrasi": "Administrasi",
+    "informasi": "Informasi",
+    "publikasi": "Publikasi",
+    "hasilProyek": "Hasil Proyek",
+    "layanan": "Layanan",
+    "fotoUdara": "Foto Udara",
+    "iot": "Internet of Things",
+    "inspeksiTeknik": "Inspeksi Teknik",
+    "penelitian": "Penelitian",
+    "agrikultur": "Agrikultur",
+    "telematika": "Telematika",
+    "webAplikasi": "Website Aplikasi",
+    "layananLainnya": "Layanan Lainnya",
+    "produk": "Produk",
+    "rumahTeknologi": "Rumah Teknologi",
+    "genesisData": "Genesis Data",
+    "hubungiKami": "Hubungi Kami"
+  },
+  "language": {
+    "id": "Indonesia",
+    "en": "Inggris"
+  },
+  "login": "Login",
+  "home": {
+    "title": "INTERNET OF THINGS (IoT)",
+    "description": "Integrasi monitoring kualitas kerja, efisiensi waktu kerja, dan visualisasi data menjadi tren yang kami kerjakan saat ini. Berikan konsep yang Anda miliki, kami akan membantu merealisasikan pengembangan IoT Anda.",
+    "button": "Selengkapnya"
+  }
+}

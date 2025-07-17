@@ -3,7 +3,7 @@ import React from "react";
 // Ikon scroll animasi di bagian bawah section
 export default function ScrollDownIndicator() {
   return (
-    <div className="absolute bottom-15 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center text-yellow-400 text-md animate-bounce-slow">
+    <div className="absolute bottom-10 sm:bottom-12 lg:bottom-16 left-1/2 -translate-x-1/2 z-[50] flex flex-col items-center text-yellow-400 text-md animate-bounce-slow">
       {/* SVG ikon mouse dengan lingkaran animasi */}
       <svg
         xmlns="http://www.w3.org/2000/svg"

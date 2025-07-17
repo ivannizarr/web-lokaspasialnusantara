@@ -1,11 +1,13 @@
 'use client'
-import { Link } from '@inertiajs/react';
-import { useState } from 'react'
+
+import { Link } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
 
 const kategoriList = ['Buku', 'Peraturan', 'Modul Pelatihan'] as const
 type Kategori = (typeof kategoriList)[number]
 
+// Dummy data publikasi
 const dummyPublikasi = [
   {
     title: 'Pengembangan Sistem Informasi Jaga Laut',
@@ -23,7 +25,7 @@ const dummyPublikasi = [
     tags: ['Foto Udara', 'Pelatihan'],
     category: 'Modul Pelatihan',
     image: '/img/foto-udara.jpg',
-    
+    link: '/publikasi/#',
   },
   {
     title: 'Peraturan Zonasi Laut',
@@ -32,22 +34,72 @@ const dummyPublikasi = [
     tags: ['Kebijakan', 'Zonasi', 'GIS'],
     category: 'Peraturan',
     image: '/img/iot.jpg',
+    link: '/publikasi/#',
+  },
+  {
+    title: 'Standar Inspeksi Dermaga',
+    description:
+      'Pedoman teknis inspeksi dan evaluasi dermaga berbasis pemodelan struktur dan deteksi visual kondisi material dermaga secara berkala.',
+    tags: ['Dermaga', 'Struktur'],
+    category: 'Buku',
+    image: '/img/foto-udara.jpg',
+    link: '/publikasi/#',
+  },
+  {
+    title: 'Peraturan Kawasan Konservasi Laut',
+    description:
+      'Landasan hukum pengelolaan kawasan konservasi laut untuk mendukung kelestarian ekosistem pesisir dan pelestarian spesies laut.',
+    tags: ['Konservasi', 'Hukum'],
+    category: 'Peraturan',
+    image: '/img/web-app.jpg',
+    link: '/publikasi/#',
+  },
+  {
+    title: 'Modul Pelatihan GIS Laut',
+    description:
+      'Materi pelatihan penggunaan sistem informasi geografis (GIS) untuk analisis spasial wilayah laut dan pesisir dalam konteks perencanaan zonasi.',
+    tags: ['GIS', 'Pelatihan'],
+    category: 'Modul Pelatihan',
+    image: '/img/iot.jpg',
+    link: '/publikasi/#',
+  },
+  {
+    title: 'Buku Panduan Identifikasi Spesies Laut',
+    description:
+      'Buku referensi lengkap tentang jenis-jenis spesies laut Indonesia, lengkap dengan gambar, klasifikasi, dan habitat alami.',
+    tags: ['Biologi', 'Panduan'],
+    category: 'Buku',
+    image: '/img/foto-udara.jpg',
+    link: '/publikasi/#',
   },
 ]
 
+const ITEMS_PER_PAGE = 6
+
 export default function SectionPublikasi() {
+  const [data, setData] = useState(dummyPublikasi) // 🔄 Ganti ke API saat ready
   const [filters, setFilters] = useState<Kategori[]>([])
   const [search, setSearch] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
+  // Hitung total per kategori
+  const categoryCount = kategoriList.reduce<Record<string, number>>((acc, curr) => {
+    acc[curr] = data.filter((p) => p.category === curr).length
+    return acc
+  }, {})
+
+  // Handler klik filter
   const handleFilterChange = (kategori: Kategori) => {
     setFilters((prev) =>
       prev.includes(kategori)
         ? prev.filter((item) => item !== kategori)
         : [...prev, kategori]
     )
+    setCurrentPage(1) // Reset halaman saat filter berubah
   }
 
-  const filteredData = dummyPublikasi.filter((item) => {
+  // Filter dan search data
+  const filteredData = data.filter((item) => {
     const matchFilter =
       filters.length === 0 || filters.includes(item.category as Kategori)
     const matchSearch =
@@ -55,10 +107,15 @@ export default function SectionPublikasi() {
     return matchFilter && matchSearch
   })
 
-  const categoryCount = kategoriList.reduce<Record<string, number>>((acc, curr) => {
-    acc[curr] = dummyPublikasi.filter((p) => p.category === curr).length
-    return acc
-  }, {})
+  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE)
+  const currentData = filteredData.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  )
+
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= totalPages) setCurrentPage(page)
+  }
 
   return (
     <section
@@ -66,29 +123,31 @@ export default function SectionPublikasi() {
       className="bg-background text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
     >
       <div className="max-w-screen-xl mx-auto space-y-12">
-        {/* Judul */}
         <div className="border-b border-white pb-6">
-          <h2 className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold font-nunito">
+          <h2 className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-yellow-400 font-extrabold font-nunito">
             Publikasi
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_3fr] gap-10">
-          {/* Sidebar filter */}
+          {/* Sidebar */}
           <aside className="space-y-8">
-            {/* Search */}
+            {/* Search bar */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-60 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value)
+                  setCurrentPage(1)
+                }}
                 className="pl-10 pr-4 py-2 w-full bg-transparent border border-white rounded-md text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-sky-800"
               />
             </div>
 
-            {/* Kategori */}
+            {/* Kategori filter */}
             <div className="space-y-2">
               <h3 className="text-lg font-bold text-white">Kategori</h3>
               <div className="flex flex-col gap-2">
@@ -113,14 +172,13 @@ export default function SectionPublikasi() {
             </div>
           </aside>
 
-          {/* Konten + Pagination */}
+          {/* Konten publikasi */}
           <div className="flex-1 space-y-12">
-            {/* Konten Kartu */}
-            {filteredData.length === 0 ? (
+            {currentData.length === 0 ? (
               <p className="text-white text-xl">Tidak ada publikasi yang cocok.</p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-                {filteredData.map((item, idx) => (
+                {currentData.map((item, idx) => (
                   <div
                     key={idx}
                     className="h-full border border-white/10 bg-gray-900 rounded-lg overflow-hidden shadow hover:shadow-lg transition-all flex flex-col"
@@ -149,12 +207,18 @@ export default function SectionPublikasi() {
                           </span>
                         ))}
                       </div>
-                      <Link
-                      href={item.link}
-                      className="cursor-pointer text-center mt-1 border border-white text-white py-2 px-4 rounded-md hover:bg-sky-800 transition text-sm"
-                    >
-                      Selengkapnya
-                    </Link>
+                      {item.link && (
+                        <Link
+                        href={item.link || '#'}
+                        className={`text-center mt-1 border py-2 px-4 rounded-lg text-sm transition ${
+                          item.link
+                            ? 'cursor-pointer text-white border-white hover:bg-sky-800'
+                            : 'cursor-not-allowed text-white/40 border-white/20'
+                        }`}
+                      >
+                        Unduh
+                      </Link>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -162,23 +226,39 @@ export default function SectionPublikasi() {
             )}
 
             {/* Pagination */}
-            <div className="flex justify-center items-center gap-2">
-              <button className="text-sm text-white hover:text-yellow-400">
-                Sebelumnya
-              </button>
-              {[1, 2, 3].map((page) => (
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-2">
                 <button
-                  key={page}
-                  className="w-8 h-8 text-sm border border-zinc-300 rounded flex items-center justify-center hover:bg-white hover:text-black transition"
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="text-sm text-white hover:text-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  {page}
+                  Sebelumnya
                 </button>
-              ))}
-              <span className="text-white">...</span>
-              <button className="text-sm text-white hover:text-yellow-400">
-                Selanjutnya
-              </button>
-            </div>
+
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i + 1}
+                    onClick={() => goToPage(i + 1)}
+                    className={`w-8 h-8 text-sm border border-zinc-300 rounded flex items-center justify-center transition ${
+                      currentPage === i + 1
+                        ? 'bg-white text-black'
+                        : 'text-white hover:bg-white hover:text-black'
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+
+                <button
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="text-sm text-white hover:text-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  Selanjutnya
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

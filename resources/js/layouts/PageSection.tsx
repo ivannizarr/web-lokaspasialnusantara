@@ -1,7 +1,8 @@
-// resources/js/layouts/PageSection.tsx
 import { ReactNode } from 'react'
 import useFadeSlide from '@/animations/useFadeSlide'
 
+
+// PageSection untuk menu layanan
 export default function PageSection({
   id,
   children,

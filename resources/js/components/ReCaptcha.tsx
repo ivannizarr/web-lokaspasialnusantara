@@ -1,4 +1,4 @@
-import React, { useRef, useImperativeHandle, forwardRef } from 'react'
+import React, { useRef, useImperativeHandle, forwardRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 export type ReCaptchaRef = {
@@ -8,16 +8,21 @@ export type ReCaptchaRef = {
 
 const ReCaptchaWrapper = forwardRef<ReCaptchaRef>((_, ref) => {
   const recaptchaRef = useRef<ReCAPTCHA>(null)
+  const [token, setToken] = useState<string | null>(null)
 
   useImperativeHandle(ref, () => ({
-    getValue: () => recaptchaRef.current?.getValue() || null,
-    reset: () => recaptchaRef.current?.reset()
+    getValue: () => token,
+    reset: () => {
+      recaptchaRef.current?.reset()
+      setToken(null)
+    }
   }))
 
   return (
     <ReCAPTCHA
-      sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" // ganti pakai sitekey asli
+      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} // dari env
       ref={recaptchaRef}
+      onChange={(value) => setToken(value)}
     />
   )
 })

@@ -8,7 +8,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@400;700&display=swap');
 
-/* ========== CSS Variables ========== */
 :root {
   --background: #ffffff;
   --foreground: #02517a;
@@ -20,7 +19,7 @@
   --font-heading: 'Montserrat', sans-serif;
 }
 
-/* Dark Mode (auto) */
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -28,7 +27,7 @@
   }
 }
 
-/* ========== Global Styles ========== */
+/* Global Styles */
 html,
 body {
   margin: 0;

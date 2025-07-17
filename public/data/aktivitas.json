@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Pengembangan Aplikasi SIJALA",
+    "description": "SISTEM INFORMASI JAGA LAUT (SIJALA) sistem terintegrasi yang digunakan untuk pengelolaan KKP Raja Ampat.",
+    "image": "/img/sijala.jpg",
+    "link": "admin@lokaspasial.com",
+    "location": {
+      "lat": -0.4330105,
+      "lng": 130.8165605
+    }
+  },
+  {
+    "title": "Kajian Ruang Laut Bali Safari dan Marine Park",
+    "description": "",
+    "image": "/img/layanan-lainnya.jpg",
+    "link": "admin@lokaspasial.com",
+    "location": {
+      "lat": -8.584326,
+      "lng": 115.3480136
+    }
+  },
+  {
+    "title": "Pemetaaan Subak Catur Angga Batukaru",
+    "description": "",
+    "image": "/img/subak.jpg",
+    "link": "admin@lokaspasial.com",
+    "location": {
+      "lat": -8.3492215,
+      "lng": 115.1118354
+    }
+  },
+  {
+    "title": "Survey Pengolah dan Pemasaran Perikanan",
+    "description": "",
+    "image": "/img/perikanan-tangkap.jpg",
+    "link": "admin@lokaspasial.com",
+    "location": {
+      "lat": -8.6006552,
+      "lng": 115.1859869
+    }
+  },
+  {
+    "title": "Survey Pengelolahan Budidaya Perikanan",
+    "description": "",
+    "image": "/img/perikanan-budidaya.jpeg",
+    "link": "admin@lokaspasial.com",
+    "location": {
+      "lat": -8.6044797293124,
+      "lng": 115.17904310052
+    }
+  }
+]

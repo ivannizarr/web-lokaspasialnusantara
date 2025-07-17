@@ -1,0 +1,36 @@
+{
+  "menu": {
+    "tentangKami": "About Us",
+    "siapaKami": "Who We Are",
+    "aktivitasKami": "Our Activities",
+    "mitra": "Partners",
+    "karir": "Careers",
+    "administrasi": "Administration",
+    "informasi": "Information",
+    "publikasi": "Publications",
+    "hasilProyek": "Project Results",
+    "layanan": "Services",
+    "fotoUdara": "Aerial Photography",
+    "iot": "Internet of Things",
+    "inspeksiTeknik": "Technical Inspection",
+    "penelitian": "Research",
+    "agrikultur": "Agriculture",
+    "telematika": "Telematics",
+    "webAplikasi": "Web Applications",
+    "layananLainnya": "Other Services",
+    "produk": "Products",
+    "rumahTeknologi": "Tech House",
+    "genesisData": "Genesis Data",
+    "hubungiKami": "Contact Us"
+  },
+  "language": {
+    "id": "Indonesian",
+    "en": "English"
+  },
+  "login": "Login",
+  "home": {
+    "title": "INTERNET OF THINGS (IoT)",
+    "description": "Integrating work quality monitoring, time efficiency, and data visualization is our current focus. Share your concept and we’ll help you build your IoT solution.",
+    "button": "Learn more"
+  }
+}

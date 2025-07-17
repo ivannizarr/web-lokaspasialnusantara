@@ -104,7 +104,7 @@ const Header = () => {
           <img
             src="/logo-white.png"
             alt="Logo"
-            className="h-20 w-auto max-w-[300px] object-contain xl:h-24"
+            className="max-h-20 sm:max-h-16 xl:max-h-20 w-auto object-contain"
           />
         </Link>
 
@@ -154,7 +154,7 @@ const Header = () => {
         </nav>
 
         {/* desktop right */}
-        <div className="hidden items-center gap-6 xl:flex">
+        <div className="hidden items-center gap-10 xl:flex">
           <div className="font-nunito flex items-center gap-1 text-sm text-white">
             <Globe size={18} />
             <span className="cursor-pointer font-bold hover:text-yellow-400">Indonesia</span>
@@ -162,11 +162,14 @@ const Header = () => {
             <span className="cursor-pointer font-bold hover:text-yellow-400">English</span>
           </div>
           {!isLoggedIn ? (
-            <button className="cursor-pointer font-nunito rounded-lg border border-white px-8 py-1 text-sm font-semibold text-white transition hover:bg-sky-800">
-              Login
-            </button>
+          <Link
+            href="/login"
+            className="cursor-pointer font-nunito rounded-lg border border-white px-8 py-1 text-sm font-semibold text-white transition hover:bg-sky-800"
+          >
+            Login
+          </Link>
           ) : (
-            <div className="h-9 w-9 rounded-full bg-yellow-400" />
+          <div className="h-9 w-9 rounded-full bg-yellow-400" />
           )}
         </div>
 
@@ -199,40 +202,53 @@ const Header = () => {
             <div className="space-y-6 pt-20">
               {menus.map((m, i) => (
                 <div key={i}>
-                  <div
-                    className="flex items-center justify-between text-lg font-semibold hover:text-yellow-400"
-                    onClick={() => (m.children ? toggleSub(i) : setMenuOpen(false))}
-                  >
-                    {m.label}
-                    {m.children && (
-                      <ChevronDown
-                        size={18}
-                        className={`transition-transform duration-300 ${
-                          openSub[i] ? 'rotate-180' : ''
-                        }`}
-                      />
-                    )}
-                  </div>
-
-                  {m.children && openSub[i] && (
-                    <div className="ml-4 mt-2 space-y-2">
-                      {m.children.map((c) => (
-                        <Link
-                          key={c.href}
-                          href={c.href}
-                          className={`block text-base text-gray-700 hover:text-yellow-400 ${
-                            url === c.href ? 'text-yellow-400 font-semibold' : ''
+                  {m.children ? (
+                    <>
+                      <div
+                        className="flex items-center justify-between text-lg font-semibold hover:text-yellow-400"
+                        onClick={() => toggleSub(i)}
+                      >
+                        {m.label}
+                        <ChevronDown
+                          size={18}
+                          className={`transition-transform duration-300 ${
+                            openSub[i] ? 'rotate-180' : ''
                           }`}
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {c.label}
-                        </Link>
-                      ))}
-                    </div>
+                        />
+                      </div>
+
+                      {openSub[i] && (
+                        <div className="ml-4 mt-2 space-y-2">
+                          {m.children.map((c) => (
+                            <Link
+                              key={c.href}
+                              href={c.href}
+                              className={`block text-base text-gray-700 hover:text-yellow-400 ${
+                                url === c.href ? 'text-yellow-400 font-semibold' : ''
+                              }`}
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              {c.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={m.href}
+                      className={`block text-lg font-semibold hover:text-yellow-400 ${
+                        url === m.href ? 'text-yellow-400' : ''
+                      }`}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {m.label}
+                    </Link>
                   )}
                 </div>
               ))}
 
+              {/* Language & Login */}
               <div className="mt-10 space-y-4 border-t border-black/20 pt-6 text-center">
                 <div className="flex items-center justify-center gap-2 text-base">
                   <Globe size={18} />
@@ -241,12 +257,15 @@ const Header = () => {
                   <span className="cursor-pointer font-bold hover:text-yellow-500">English</span>
                 </div>
                 {!isLoggedIn ? (
-                  <button className="w-full rounded-xl border border-black px-6 py-2 font-semibold hover:bg-[#02517A] hover:text-white">
-                    Login
-                  </button>
-                ) : (
-                  <div className="mx-auto h-10 w-10 rounded-full bg-yellow-500" />
-                )}
+                <Link
+                href="/login"
+                className="w-full text-center rounded-lg border border-black px-35 py-2 font-semibold hover:bg-[#02517A] hover:text-white"
+              >
+                Login
+              </Link>
+              ) : (
+                <div className="mx-auto h-10 w-10 rounded-full bg-yellow-500" />
+              )}
               </div>
             </div>
           </div>

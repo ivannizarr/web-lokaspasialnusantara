@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Surveyor Perikanan",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Magang",
+    "status": "Open",
+    "description": "Dibutuhkan tenaga kerja fresh graduate untuk survey hasil tangkapan nelayan di Kabupaten Badung. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey."
+  },
+  {
+    "title": "Surveyor Pemetaan",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Part Time",
+    "status": "Closed",
+    "description": "Dibutuhkan tenaga kerja fresh graduate untuk survey hasil pemetaan subak di Kabupaten Tabanan. Bisa mengoperasikan motor, memiliki smartphone untuk pencatatan hasil survey."
+  },
+  {
+    "title": "Staff Administrasi",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Full Time",
+    "status": "Closed",
+    "description": "Dibutuhkan tenaga administrasi pengalaman 1 tahun dalam pengelolaan keuangan perusahaan. Tidak membutuhkan sertifikat keahlian, cukup memberikan contoh hasil pekerjaan."
+  },
+  {
+    "title": "Pimpinan Teknis",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Full Time",
+    "status": "Open",
+    "description": "Dibutuhkan Team Leader proyek. Memiliki pengalaman minimal 2 tahun dan dapat mengelola tim dengan baik. Tidak membutuhkan sertifikat keahlian, cukup memberikan contoh hasil pekerjaan."
+  },
+  {
+    "title": "GIS Specialist",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Part Time",
+    "status": "Closed",
+    "description": "Dibutuhkan tenaga GIS expert, memiliki spesialisasi pembuatan analisis, kartografi, hingga manajemen data. Tidak membutuhkan sertifikat keahlian, cukup memberikan contoh hasil pekerjaan."
+  }
+]
