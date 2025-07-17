@@ -59,7 +59,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
   return (
     <section
       id={id}
-      className="relative z-10 pt-8 bg-gray-600 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
+      className="relative z-10 pt-8 mt-0 bg-gray-600 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
     >
       <div className="max-w-screen-xl mx-auto space-y-12">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-center text-yellow-400 font-extrabold font-nunito border-b border-white pb-6">

@@ -17,7 +17,7 @@ const Footer2 = () => {
               <img
                 src="/white-logo.png"
                 alt="Logo"
-                className="h-16 sm:h-16 md:h-20 w-auto object-contain"
+                className="h-22 sm:h-16 md:h-22 w-auto object-contain"
               />
             </div>
 

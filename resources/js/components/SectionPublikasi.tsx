@@ -16,7 +16,7 @@ const dummyPublikasi = [
     tags: ['Web Aplikasi', 'Inspeksi Teknik'],
     category: 'Buku',
     image: '/img/web-app.jpg',
-    link: '/publikasi/pengembangan-sistem-informasi-jaga-laut',
+    link: '/publikasi/#',
   },
   {
     title: 'Modul Pelatihan Drone',

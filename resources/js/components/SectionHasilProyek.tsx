@@ -27,7 +27,7 @@ const dummyPublikasi = [
       'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
     tags: ['Website Aplikasi', 'Inspeksi Teknik'],
     image: '/img/web-app.jpg',
-    link: '/hasil-proyek/pengembangan-sistem-informasi-jaga-laut',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Modul Pelatihan Drone',
@@ -35,7 +35,7 @@ const dummyPublikasi = [
       'Panduan teknis operasional drone untuk kegiatan pemetaan wilayah pesisir serta pelatihan penggunaan teknologi udara dalam mendukung survei dan monitoring wilayah laut.',
     tags: ['Foto Udara', 'Penelitian'],
     image: '/img/foto-udara.jpg',
-    link: '/hasil-proyek/modul-pelatihan-drone',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Peraturan Zonasi Laut',
@@ -43,7 +43,7 @@ const dummyPublikasi = [
       'Regulasi strategis mengenai tata kelola wilayah laut dan zonasi pemanfaatan ruang laut yang mendukung pengambilan keputusan berbasis spasial dan kebijakan.',
     tags: ['Internet of Things', 'Penelitian'],
     image: '/img/iot.jpg',
-    link: '/hasil-proyek/peraturan-zonasi-laut',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Pengembangan Sistem Informasi Jaga Laut',
@@ -51,7 +51,7 @@ const dummyPublikasi = [
       'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
     tags: ['Website Aplikasi', 'Inspeksi Teknik'],
     image: '/img/web-app.jpg',
-    link: '/hasil-proyek/pengembangan-sistem-informasi-jaga-laut',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Modul Pelatihan Drone',
@@ -59,7 +59,7 @@ const dummyPublikasi = [
       'Panduan teknis operasional drone untuk kegiatan pemetaan wilayah pesisir serta pelatihan penggunaan teknologi udara dalam mendukung survei dan monitoring wilayah laut.',
     tags: ['Foto Udara', 'Penelitian'],
     image: '/img/foto-udara.jpg',
-    link: '/hasil-proyek/modul-pelatihan-drone',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Peraturan Zonasi Laut',
@@ -67,7 +67,7 @@ const dummyPublikasi = [
       'Regulasi strategis mengenai tata kelola wilayah laut dan zonasi pemanfaatan ruang laut yang mendukung pengambilan keputusan berbasis spasial dan kebijakan.',
     tags: ['Internet of Things', 'Penelitian'],
     image: '/img/iot.jpg',
-    link: '/hasil-proyek/peraturan-zonasi-laut',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Pengembangan Sistem Informasi Jaga Laut',
@@ -75,7 +75,7 @@ const dummyPublikasi = [
       'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
     tags: ['Website Aplikasi', 'Inspeksi Teknik'],
     image: '/img/web-app.jpg',
-    link: '/hasil-proyek/pengembangan-sistem-informasi-jaga-laut',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Modul Pelatihan Drone',
@@ -83,7 +83,7 @@ const dummyPublikasi = [
       'Panduan teknis operasional drone untuk kegiatan pemetaan wilayah pesisir serta pelatihan penggunaan teknologi udara dalam mendukung survei dan monitoring wilayah laut.',
     tags: ['Foto Udara', 'Penelitian'],
     image: '/img/foto-udara.jpg',
-    link: '/hasil-proyek/modul-pelatihan-drone',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Peraturan Zonasi Laut',
@@ -91,7 +91,7 @@ const dummyPublikasi = [
       'Regulasi strategis mengenai tata kelola wilayah laut dan zonasi pemanfaatan ruang laut yang mendukung pengambilan keputusan berbasis spasial dan kebijakan.',
     tags: ['Internet of Things', 'Penelitian'],
     image: '/img/iot.jpg',
-    link: '/hasil-proyek/peraturan-zonasi-laut',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Pengembangan Sistem Informasi Jaga Laut',
@@ -99,7 +99,7 @@ const dummyPublikasi = [
       'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
     tags: ['Website Aplikasi', 'Inspeksi Teknik'],
     image: '/img/web-app.jpg',
-    link: '/hasil-proyek/pengembangan-sistem-informasi-jaga-laut',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Modul Pelatihan Drone',
@@ -107,7 +107,7 @@ const dummyPublikasi = [
       'Panduan teknis operasional drone untuk kegiatan pemetaan wilayah pesisir serta pelatihan penggunaan teknologi udara dalam mendukung survei dan monitoring wilayah laut.',
     tags: ['Foto Udara', 'Penelitian'],
     image: '/img/foto-udara.jpg',
-    link: '/hasil-proyek/modul-pelatihan-drone',
+    link: '/hasil-proyek/#',
   },
   {
     title: 'Peraturan Zonasi Laut',
@@ -115,7 +115,7 @@ const dummyPublikasi = [
       'Regulasi strategis mengenai tata kelola wilayah laut dan zonasi pemanfaatan ruang laut yang mendukung pengambilan keputusan berbasis spasial dan kebijakan.',
     tags: ['Internet of Things', 'Penelitian'],
     image: '/img/iot.jpg',
-    link: '/hasil-proyek/peraturan-zonasi-laut',
+    link: '/hasil-proyek/#',
   },
 ]
 
