@@ -3,6 +3,7 @@
 import { Link } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const kategoriList = ['Buku', 'Peraturan', 'Modul Pelatihan'] as const
 type Kategori = (typeof kategoriList)[number]
@@ -77,41 +78,32 @@ const dummyPublikasi = [
 const ITEMS_PER_PAGE = 6
 
 export default function SectionPublikasi() {
-  const [data, setData] = useState(dummyPublikasi) // 🔄 Ganti ke API saat ready
+  const { t } = useTranslation()
+  const [data, setData] = useState(dummyPublikasi)
   const [filters, setFilters] = useState<Kategori[]>([])
   const [search, setSearch] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
-  // Hitung total per kategori
   const categoryCount = kategoriList.reduce<Record<string, number>>((acc, curr) => {
     acc[curr] = data.filter((p) => p.category === curr).length
     return acc
   }, {})
 
-  // Handler klik filter
   const handleFilterChange = (kategori: Kategori) => {
     setFilters((prev) =>
-      prev.includes(kategori)
-        ? prev.filter((item) => item !== kategori)
-        : [...prev, kategori]
+      prev.includes(kategori) ? prev.filter((item) => item !== kategori) : [...prev, kategori]
     )
-    setCurrentPage(1) // Reset halaman saat filter berubah
+    setCurrentPage(1)
   }
 
-  // Filter dan search data
   const filteredData = data.filter((item) => {
-    const matchFilter =
-      filters.length === 0 || filters.includes(item.category as Kategori)
-    const matchSearch =
-      search === '' || item.title.toLowerCase().includes(search.toLowerCase())
+    const matchFilter = filters.length === 0 || filters.includes(item.category as Kategori)
+    const matchSearch = search === '' || item.title.toLowerCase().includes(search.toLowerCase())
     return matchFilter && matchSearch
   })
 
   const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE)
-  const currentData = filteredData.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  )
+  const currentData = filteredData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
 
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) setCurrentPage(page)
@@ -120,12 +112,12 @@ export default function SectionPublikasi() {
   return (
     <section
       id="publikasi"
-      className="bg-background text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
+      className="bg-gray-600 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
     >
       <div className="max-w-screen-xl mx-auto space-y-12">
         <div className="border-b border-white pb-6">
           <h2 className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-yellow-400 font-extrabold font-nunito">
-            Publikasi
+            {t('publikasi.title')}
           </h2>
         </div>
 
@@ -137,7 +129,7 @@ export default function SectionPublikasi() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-60 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search"
+                placeholder={t('publikasi.search')}
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value)
@@ -147,9 +139,9 @@ export default function SectionPublikasi() {
               />
             </div>
 
-            {/* Kategori filter */}
+            {/* Kategori */}
             <div className="space-y-2">
-              <h3 className="text-lg font-bold text-white">Kategori</h3>
+              <h3 className="text-lg font-bold text-white">{t('publikasi.category')}</h3>
               <div className="flex flex-col gap-2">
                 {kategoriList.map((cat) => (
                   <label
@@ -163,7 +155,7 @@ export default function SectionPublikasi() {
                         onChange={() => handleFilterChange(cat)}
                         className="form-checkbox bg-gray-700 text-sky-800 border-zinc-600"
                       />
-                      <span className="text-white font-medium">{cat}</span>
+                      <span className="text-white font-medium">{t(`publikasi.kategori.${cat}`)}</span>
                     </div>
                     <span className="text-white/70 text-sm font-bold">{categoryCount[cat]}</span>
                   </label>
@@ -172,10 +164,10 @@ export default function SectionPublikasi() {
             </div>
           </aside>
 
-          {/* Konten publikasi */}
+          {/* Konten */}
           <div className="flex-1 space-y-12">
             {currentData.length === 0 ? (
-              <p className="text-white text-xl">Tidak ada publikasi yang cocok.</p>
+              <p className="text-white text-xl">{t('publikasi.empty')}</p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                 {currentData.map((item, idx) => (
@@ -183,11 +175,7 @@ export default function SectionPublikasi() {
                     key={idx}
                     className="h-full border border-white/10 bg-gray-900 rounded-lg overflow-hidden shadow hover:shadow-lg transition-all flex flex-col"
                   >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-48 object-cover"
-                    />
+                    <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
                     <div className="p-5 flex flex-col justify-between gap-4 flex-grow">
                       <div>
                         <h3 className="font-bold font-nunito text-white text-base line-clamp-2">
@@ -209,15 +197,15 @@ export default function SectionPublikasi() {
                       </div>
                       {item.link && (
                         <Link
-                        href={item.link || '#'}
-                        className={`text-center mt-1 border py-2 px-4 rounded-lg text-sm transition ${
-                          item.link
-                            ? 'cursor-pointer text-white border-white hover:bg-sky-800'
-                            : 'cursor-not-allowed text-white/40 border-white/20'
-                        }`}
-                      >
-                        Unduh
-                      </Link>
+                          href={item.link || '#'}
+                          className={`text-center mt-1 border py-2 px-4 rounded-lg text-sm transition ${
+                            item.link
+                              ? 'cursor-pointer text-white border-white hover:bg-sky-800'
+                              : 'cursor-not-allowed text-white/40 border-white/20'
+                          }`}
+                        >
+                          {t('publikasi.download')}
+                        </Link>
                       )}
                     </div>
                   </div>
@@ -233,7 +221,7 @@ export default function SectionPublikasi() {
                   disabled={currentPage === 1}
                   className="text-sm text-white hover:text-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Sebelumnya
+                  {t('publikasi.prev')}
                 </button>
 
                 {Array.from({ length: totalPages }).map((_, i) => (
@@ -255,7 +243,7 @@ export default function SectionPublikasi() {
                   disabled={currentPage === totalPages}
                   className="text-sm text-white hover:text-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Selanjutnya
+                  {t('publikasi.next')}
                 </button>
               </div>
             )}

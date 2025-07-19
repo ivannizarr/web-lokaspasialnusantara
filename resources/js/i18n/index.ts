@@ -14,9 +14,13 @@ i18n
       en: { translation: en },
     },
     fallbackLng: 'id',
-    interpolation: {
-      escapeValue: false,
+    detection: {
+      order: ['querystring', 'localStorage', 'navigator'],
+      lookupQuerystring: 'lang',
+      lookupLocalStorage: 'lang',
+      caches: ['localStorage'],
     },
+    interpolation: { escapeValue: false },
   })
 
 export default i18n

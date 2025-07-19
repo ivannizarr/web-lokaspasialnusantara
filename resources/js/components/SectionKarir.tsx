@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { MapPin, CalendarDays, Search } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const jobTypes = ['Full Time', 'Part Time', 'Magang'] as const
 const JOBS_PER_PAGE = 4
@@ -16,6 +17,7 @@ type Karir = {
 }
 
 export default function JobListSection({ id = 'karir' }: { id?: string }) {
+  const { t } = useTranslation()
   const [jobs, setJobs] = useState<Karir[]>([])
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState('')
@@ -63,7 +65,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
     >
       <div className="max-w-screen-xl mx-auto space-y-12">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-center text-yellow-400 font-extrabold font-nunito border-b border-white pb-6">
-          Lowongan Kami
+          {t('karir.title')}
         </h2>
 
         <div className="grid lg:grid-cols-[1fr_3fr] gap-12">
@@ -73,7 +75,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-60 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search"
+                placeholder={t('karir.search')}
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value)
@@ -84,7 +86,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
             </div>
 
             <div>
-              <h3 className="font-semibold mb-2">Kategori</h3>
+              <h3 className="font-semibold mb-2">{t('karir.category')}</h3>
               <div className="space-y-2">
                 {jobTypes.map((type) => (
                   <label
@@ -98,7 +100,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                         checked={selectedTypes.includes(type)}
                         onChange={() => toggleType(type)}
                       />
-                      <span className="text-white font-medium">{type}</span>
+                      <span className="text-white font-medium">{t(`karir.types.${type}`)}</span>
                     </div>
                     <span className="text-white text-sm font-semibold">
                       {jobCounts[type]}
@@ -113,8 +115,8 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
           <div className="space-y-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {currentJobs.length === 0 ? (
-                <p className="col-span-full text-white/70 text-lg">
-                  Tidak ada lowongan yang cocok.
+                <p className="col-span-full text-white text-lg">
+                  {t('karir.noJob')}
                 </p>
               ) : (
                 currentJobs.map((job, idx) => (
@@ -129,7 +131,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                         </h3>
                         <div className="flex gap-2">
                           <span className="bg-sky-800 text-xs px-3 py-1 rounded-full">
-                            {job.type}
+                            {t(`karir.types.${job.type}`)}
                           </span>
                           <span
                             className={`text-xs px-3 py-1 rounded-full ${
@@ -138,7 +140,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                                 : 'bg-orange-400'
                             }`}
                           >
-                            {job.status}
+                            {t(`karir.status.${job.status}`)}
                           </span>
                         </div>
                       </div>
@@ -159,20 +161,18 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                     </div>
 
                     <button
-                    onClick={() =>
-                      window.open(
-                        `mailto:admin@lokaspasial.com?subject=Lamar%20Pekerjaan%20-%20${encodeURIComponent(
-                          job.title
-                        )}&body=Halo%20Tim%20Loka%20Spasial,%0ASaya%20tertarik%20melamar%20pekerjaan%20${encodeURIComponent(
-                          job.title
-                        )}.%0ATerima%20kasih.`,
-                        '_blank'
-                      )
-                    }
-                    className="cursor-pointer mt-4 border border-white text-white py-2 px-4 rounded-md hover:bg-sky-800 transition-all text-sm"
-                  >
-                    Lamar Sekarang
-                  </button>
+                      onClick={() =>
+                        window.open(
+                          `mailto:admin@lokaspasial.com?subject=${encodeURIComponent(
+                            t('karir.emailSubject', { title: job.title })
+                          )}&body=${encodeURIComponent(t('karir.emailBody', { title: job.title }))}`,
+                          '_blank'
+                        )
+                      }
+                      className="cursor-pointer mt-4 border border-white text-white py-2 px-4 rounded-md hover:bg-sky-800 transition-all text-sm"
+                    >
+                      {t('karir.apply')}
+                    </button>
                   </div>
                 ))
               )}
@@ -186,7 +186,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                   disabled={currentPage === 1}
                   className="text-sm text-white hover:text-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Sebelumnya
+                  {t('karir.prev')}
                 </button>
 
                 {Array.from({ length: totalPages }).map((_, index) => (
@@ -208,7 +208,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                   disabled={currentPage === totalPages}
                   className="text-sm text-white hover:text-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Selanjutnya
+                  {t('karir.next')}
                 </button>
               </div>
             )}

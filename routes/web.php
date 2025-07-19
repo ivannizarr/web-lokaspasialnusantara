@@ -60,9 +60,11 @@ Route::prefix('produk')->name('produk.')->group(function () {
 Route::get('/hubungi-kami', fn () => Inertia::render('hubungi-kami'))->name('contact');
 
 // DASHBOARD
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn () => Inertia::render('dashboard'))->name('dashboard');
-});
+Route::get('/dashboard/{section?}', function ($section = null) {
+    return Inertia::render('dashboard', [
+        'section' => $section,
+    ]);
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 require __DIR__.'/settings.php';

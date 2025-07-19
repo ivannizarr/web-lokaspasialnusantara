@@ -2,8 +2,9 @@
 
 import { useEffect } from 'react'
 import { Head, usePage } from '@inertiajs/react'
-import AppLayout from '@/layouts/app-layout'
+import { useTranslation } from 'react-i18next'
 
+import AppLayout from '@/layouts/app-layout'
 import SectionSiapaKami from '@/components/SectionSiapaKami'
 import SectionAktivitasKami from '@/components/SectionAktivitasKami'
 import SectionMitraKami from '@/components/SectionMitra'
@@ -12,19 +13,23 @@ import Footer2 from '@/components/footer-v2'
 
 import useActiveSection from '@/hooks/useActiveSection'
 
-const sectionList = [
-  { id: 'siapa-kami', title: 'Siapa Kami' },
-  { id: 'aktivitas-kami', title: 'Aktivitas Kami' },
-  { id: 'mitra', title: 'Mitra' },
-  { id: 'karir', title: 'Karir' },
-]
+// Gunakan kunci i18next, bukan string hardcoded
+const sectionKeys = ['siapaKami', 'aktivitasKami', 'mitra', 'karir'] as const
+type SectionKey = typeof sectionKeys[number]
 
 export default function TentangKamiPage() {
+  const { t } = useTranslation()
   const { props } = usePage<{ activeSection: string | null }>()
   const activeSection = props.activeSection
 
-  const activeId = useActiveSection(sectionList.map(s => s.id))
-  const activeTitle = sectionList.find(s => s.id === activeId)?.title ?? 'Tentang Kami'
+  // Buat list section dengan ID dan label dari terjemahan
+  const sectionList = sectionKeys.map((key) => ({
+    id: key.replace(/([A-Z])/g, '-$1').toLowerCase(), // camelCase → kebab-case
+    title: t(`nav.${key}`),
+  }))
+
+  const activeId = useActiveSection(sectionList.map((s) => s.id))
+  const activeTitle = sectionList.find((s) => s.id === activeId)?.title ?? t('nav.tentangKami')
 
   useEffect(() => {
     if (activeSection) {

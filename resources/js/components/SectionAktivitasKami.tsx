@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import MarkerClusterGroup from "react-leaflet-cluster"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 import { Link } from "@inertiajs/react"
+import { useTranslation } from 'react-i18next'
 
 // Fix icon Leaflet default (bundler modern seperti Vite/Webpack5)
 delete (L.Icon.Default.prototype as any)._getIconUrl
@@ -29,6 +30,7 @@ type Aktivitas = {
 const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
   const [isClient, setIsClient] = useState(false)
   const [aktivitas, setAktivitas] = useState<Aktivitas[]>([])
+  const { t } = useTranslation()
 
   useEffect(() => {
     setIsClient(true)
@@ -45,14 +47,12 @@ const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
     >
       <div className="container w-full max-w-[1300px] border-b border-white pb-6">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-center text-yellow-400 font-extrabold font-nunito">
-          Aktivitas Kami
+          {t('aktivitasKami.title')}
         </h2>
       </div>
 
       <p className="text-center text-sm sm:text-base md:text-lg lg:text-lg font-medium max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl leading-relaxed">
-        Kami berkontribusi dalam proyek strategis baik regional maupun nasional yang diinisiasi oleh
-        pemerintah, swasta, organisasi, ataupun perorangan untuk mendukung pencapaian kinerja yang telah
-        ditentukan. Sebaran pekerjaan kami dapat dilihat pada peta sebagai berikut:
+        {t('aktivitasKami.description')}
       </p>
 
       {isClient && (
@@ -80,7 +80,7 @@ const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
                         rel="noopener noreferrer"
                         className="block text-blue-800 text-sm font-normal hover:font-semibold hover:underline"
                       >
-                        Hubungi Kami
+                        {t('aktivitasKami.contact')}
                       </a>
                       <img
                         src={item.image}

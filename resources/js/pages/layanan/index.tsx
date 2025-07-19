@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 import { Head, usePage } from '@inertiajs/react'
+import { useTranslation } from 'react-i18next'
+
 import AppLayout from '@/layouts/app-layout'
 import PageSection from '@/layouts/PageSection'
 import useActiveSection from '@/hooks/useActiveSection'
@@ -15,23 +17,35 @@ import SectionTelematika from '@/components/SectionTelematika'
 import SectionWebApp from '@/components/SectionWebApp'
 import SectionLayananLainnya from '@/components/SectionLayananLainnya'
 
-const sectionList = [
-  { id: 'foto-udara', title: 'Foto Udara' },
-  { id: 'internet-of-things', title: 'Internet of Things' },
-  { id: 'inspeksi-teknik', title: 'Inspeksi Teknik' },
-  { id: 'penelitian', title: 'Penelitian' },
-  { id: 'agrikultur', title: 'Agrikultur' },
-  { id: 'telematika', title: 'Telematika' },
-  { id: 'website-aplikasi', title: 'Website Aplikasi' },
-  { id: 'layanan-lainnya', title: 'Layanan Lainnya' },
-]
+const sectionKeys = [
+  'fotoUdara',
+  'iot',
+  'inspeksi',
+  'penelitian',
+  'agrikultur',
+  'telematika',
+  'webapp',
+  'lainnya',
+] as const
+
+type SectionKey = typeof sectionKeys[number]
 
 export default function LayananPage() {
+  const { t } = useTranslation()
   const { props } = usePage<{ activeSection: string | null }>()
   const activeSection = props.activeSection
 
-  const activeId = useActiveSection(sectionList.map(s => s.id))
-  const activeTitle = sectionList.find(s => s.id === activeId)?.title ?? 'Layanan'
+  const sectionList = sectionKeys.map((key) => ({
+    id: key
+      .replace(/[A-Z]/g, (match) => '-' + match.toLowerCase()) // camelCase → kebab-case
+      .replace(/^iot$/, 'internet-of-things') // override khusus IoT
+      .replace(/^webapp$/, 'website-aplikasi') // override khusus Web App
+      .replace(/^lainnya$/, 'layanan-lainnya'), // override khusus Layanan Lainnya
+    title: t(`nav.${key}`),
+  }))
+
+  const activeId = useActiveSection(sectionList.map((s) => s.id))
+  const activeTitle = sectionList.find((s) => s.id === activeId)?.title ?? t('nav.layanan')
 
   useEffect(() => {
     if (activeSection) {

@@ -1,5 +1,8 @@
+'use client'
+
 import { useEffect, useState } from "react"
 import PartnerSliderRow from "@/components/CarouselLogo"
+import { useTranslation } from "react-i18next"
 
 interface Mitra {
   slug: string
@@ -14,6 +17,7 @@ interface Mitra {
 
 const SectionMitraKami = ({ id = "mitra" }: { id?: string }) => {
   const [partnerList, setPartnerList] = useState<Mitra[]>([])
+  const { t } = useTranslation()
 
   useEffect(() => {
     fetch("/data/mitra.json")
@@ -22,7 +26,6 @@ const SectionMitraKami = ({ id = "mitra" }: { id?: string }) => {
       .catch((err) => console.error("Gagal load mitra.json", err))
   }, [])
 
-  // Duplikasikan list supaya minimal cukup item untuk marquee animasi
   const duplicated = [...partnerList, ...partnerList]
   const halfway = Math.ceil(duplicated.length / 2)
   const logos1 = duplicated.slice(0, halfway)
@@ -35,12 +38,12 @@ const SectionMitraKami = ({ id = "mitra" }: { id?: string }) => {
     >
       <div className="container w-full max-w-[1300px] border-b border-white pb-6">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-center text-yellow-400 font-extrabold font-nunito">
-          Mitra Kami
+          {t("mitraKami.title")}
         </h2>
       </div>
 
       <p className="text-center text-sm sm:text-base md:text-lg lg:text-lg font-medium max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl leading-relaxed">
-        Kami menjalin kemitraaan baik dengan berbagai latar belakang pemangku kepentingan. Kami membuka kolaborasi dengan semua pemangku kepentingan untuk meningkatkan perekonomian, pengetauan, dan kesadaran masyarakat, serta membuat bumi lebih baik.
+        {t("mitraKami.description")}
       </p>
 
       <div className="cursor-pointer flex flex-col gap-4 w-full max-w-7xl">

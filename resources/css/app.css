@@ -8,18 +8,31 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@400;700&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #02517a;
+@theme {
+  --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+
+  --radius-lg: 0.625rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.375rem;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
-  --font-sans: 'Nunito', sans-serif;
-  --font-heading: 'Montserrat', sans-serif;
+  --color-primary: #02517a;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ededed;
+  --color-secondary-foreground: #02517a;
+  --color-border: #cccccc;
+  --color-input: #cccccc;
+  --color-ring: #cccccc;
 }
 
-/* Dark Mode */
+:root {
+  --background: #ffffff;
+  --foreground: #02517a;
+  --radius: 0.625rem;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -27,33 +40,31 @@
   }
 }
 
-/* Global Styles */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  scroll-behavior: smooth;
-}
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-}
+  * {
+    @apply border-border;
+  }
 
-code, pre {
-  font-family: var(--font-mono, monospace);
-}
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
 
-.animate-scroll-track {
-  will-change: transform;
-  animation-play-state: running;
-}
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
 
-.animate-scroll-track:hover {
-  animation-play-state: paused;
+  code, pre {
+    font-family: var(--font-mono, monospace);
+  }
 }
 
 @layer utilities {
@@ -79,14 +90,13 @@ code, pre {
   }
 }
 
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 3px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
   background-color: #FFFFFF;
   border-radius: 6px;

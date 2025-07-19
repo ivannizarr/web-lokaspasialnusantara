@@ -20,10 +20,10 @@ const ReCaptchaWrapper = forwardRef<ReCaptchaRef>((_, ref) => {
 
   return (
     <ReCAPTCHA
-      sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} // dari env
-      ref={recaptchaRef}
-      onChange={(value) => setToken(value)}
-    />
+    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+    ref={recaptchaRef}
+    onChange={(value) => setToken(value)}
+  />
   )
 })
 

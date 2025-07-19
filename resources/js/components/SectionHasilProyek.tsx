@@ -1,10 +1,10 @@
 'use client'
 
 import { Link } from '@inertiajs/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Search } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
-// Kategori untuk filter
 const kategoriList = [
   'Foto Udara',
   'Internet of Things',
@@ -16,16 +16,14 @@ const kategoriList = [
   'Layanan Lainnya',
 ] as const
 
-// Tipe kategori
 type Kategori = (typeof kategoriList)[number]
 
-// Dummy data hasil proyek
 const dummyPublikasi = [
   {
     title: 'Pengembangan Sistem Informasi Jaga Laut',
     description:
-      'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
-    tags: ['Website Aplikasi', 'Inspeksi Teknik'],
+      'Dokumentasi sistem informasi berbasis web aplikasi yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
+    tags: ['Website Aplikasi'],
     image: '/img/web-app.jpg',
     link: '/hasil-proyek/#',
   },
@@ -44,90 +42,18 @@ const dummyPublikasi = [
     tags: ['Internet of Things', 'Penelitian'],
     image: '/img/iot.jpg',
     link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Pengembangan Sistem Informasi Jaga Laut',
-    description:
-      'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
-    tags: ['Website Aplikasi', 'Inspeksi Teknik'],
-    image: '/img/web-app.jpg',
-    link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Modul Pelatihan Drone',
-    description:
-      'Panduan teknis operasional drone untuk kegiatan pemetaan wilayah pesisir serta pelatihan penggunaan teknologi udara dalam mendukung survei dan monitoring wilayah laut.',
-    tags: ['Foto Udara', 'Penelitian'],
-    image: '/img/foto-udara.jpg',
-    link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Peraturan Zonasi Laut',
-    description:
-      'Regulasi strategis mengenai tata kelola wilayah laut dan zonasi pemanfaatan ruang laut yang mendukung pengambilan keputusan berbasis spasial dan kebijakan.',
-    tags: ['Internet of Things', 'Penelitian'],
-    image: '/img/iot.jpg',
-    link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Pengembangan Sistem Informasi Jaga Laut',
-    description:
-      'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
-    tags: ['Website Aplikasi', 'Inspeksi Teknik'],
-    image: '/img/web-app.jpg',
-    link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Modul Pelatihan Drone',
-    description:
-      'Panduan teknis operasional drone untuk kegiatan pemetaan wilayah pesisir serta pelatihan penggunaan teknologi udara dalam mendukung survei dan monitoring wilayah laut.',
-    tags: ['Foto Udara', 'Penelitian'],
-    image: '/img/foto-udara.jpg',
-    link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Peraturan Zonasi Laut',
-    description:
-      'Regulasi strategis mengenai tata kelola wilayah laut dan zonasi pemanfaatan ruang laut yang mendukung pengambilan keputusan berbasis spasial dan kebijakan.',
-    tags: ['Internet of Things', 'Penelitian'],
-    image: '/img/iot.jpg',
-    link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Pengembangan Sistem Informasi Jaga Laut',
-    description:
-      'Dokumentasi sistem informasi maritim berbasis web yang digunakan untuk pemantauan aktivitas nelayan dan pengelolaan data tangkapan hasil laut secara akurat dan terintegrasi.',
-    tags: ['Website Aplikasi', 'Inspeksi Teknik'],
-    image: '/img/web-app.jpg',
-    link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Modul Pelatihan Drone',
-    description:
-      'Panduan teknis operasional drone untuk kegiatan pemetaan wilayah pesisir serta pelatihan penggunaan teknologi udara dalam mendukung survei dan monitoring wilayah laut.',
-    tags: ['Foto Udara', 'Penelitian'],
-    image: '/img/foto-udara.jpg',
-    link: '/hasil-proyek/#',
-  },
-  {
-    title: 'Peraturan Zonasi Laut',
-    description:
-      'Regulasi strategis mengenai tata kelola wilayah laut dan zonasi pemanfaatan ruang laut yang mendukung pengambilan keputusan berbasis spasial dan kebijakan.',
-    tags: ['Internet of Things', 'Penelitian'],
-    image: '/img/iot.jpg',
-    link: '/hasil-proyek/#',
-  },
+  }
 ]
 
 const ITEMS_PER_PAGE = 6
 
-export default function SectionPublikasi() {
-  const [data, setData] = useState(dummyPublikasi) // TODO: Replace with fetch API
+export default function SectionHasilProyek() {
+  const { t } = useTranslation()
+  const [data] = useState(dummyPublikasi)
   const [filters, setFilters] = useState<Kategori[]>([])
   const [search, setSearch] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
-  // Handler checkbox filter
   const toggleFilter = (kategori: Kategori) => {
     setFilters((prev) =>
       prev.includes(kategori)
@@ -137,55 +63,40 @@ export default function SectionPublikasi() {
     setCurrentPage(1)
   }
 
-  // Hitung jumlah tag untuk label
   const tagCounts = kategoriList.reduce<Record<string, number>>((acc, tag) => {
     acc[tag] = data.filter((item) => item.tags.includes(tag)).length
     return acc
   }, {})
 
-  // Filter berdasarkan search dan kategori
   const filtered = data.filter((item) => {
-    const matchSearch =
-      search === '' || item.title.toLowerCase().includes(search.toLowerCase())
-
-    const matchFilter =
-      filters.length === 0 ||
-      filters.some((f) => item.tags.includes(f as string))
-
+    const matchSearch = search === '' || item.title.toLowerCase().includes(search.toLowerCase())
+    const matchFilter = filters.length === 0 || filters.some((f) => item.tags.includes(f))
     return matchSearch && matchFilter
   })
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE)
-  const paginatedData = filtered.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  )
+  const paginatedData = filtered.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE)
 
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) setCurrentPage(page)
   }
 
   return (
-    <section
-      id="publikasi"
-      className="bg-background text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
-    >
+    <section id="hasil-proyek" className="bg-gray-600 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16">
       <div className="max-w-screen-xl mx-auto space-y-12">
         <div className="border-b border-white pb-6">
           <h2 className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-yellow-400 font-extrabold font-nunito">
-            Hasil Proyek
+            {t('hasilProyek.title')}
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_3fr] gap-10">
-          {/* Sidebar */}
           <aside className="space-y-8">
-            {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white opacity-60 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search"
+                placeholder={t('hasilProyek.search')}
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value)
@@ -195,9 +106,8 @@ export default function SectionPublikasi() {
               />
             </div>
 
-            {/* Filter */}
             <div>
-              <h3 className="font-semibold mb-2">Kategori</h3>
+              <h3 className="font-semibold mb-2 text-white">{t('hasilProyek.category')}</h3>
               <div className="flex flex-col gap-2">
                 {kategoriList.map((kategori) => (
                   <label
@@ -211,7 +121,7 @@ export default function SectionPublikasi() {
                         onChange={() => toggleFilter(kategori)}
                         className="form-checkbox bg-gray-700 text-sky-800 border-zinc-600"
                       />
-                      <span className="text-white font-medium">{kategori}</span>
+                      <span className="text-white font-medium">{t(`hasilProyek.kategori.${kategori}`)}</span>
                     </div>
                     <span className="text-white text-xs rounded-full px-2 py-[1px] font-bold">
                       {tagCounts[kategori]}
@@ -222,12 +132,11 @@ export default function SectionPublikasi() {
             </div>
           </aside>
 
-          {/* Konten */}
           <div className="space-y-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
               {paginatedData.length === 0 ? (
                 <p className="text-white text-xl col-span-full">
-                  Tidak ada yang cocok.
+                  {t('hasilProyek.empty')}
                 </p>
               ) : (
                 paginatedData.map((item, idx) => (
@@ -253,9 +162,9 @@ export default function SectionPublikasi() {
                         {item.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="bg-sky-800 text-xs px-3 py-1 rounded-full text-white whitespace-nowrap"
+                            className="bg-sky-800 text-[11px] px-3 py-1 rounded-full text-white whitespace-nowrap"
                           >
-                            {tag}
+                            {t(`hasilProyek.kategori.${tag}`)}
                           </span>
                         ))}
                       </div>
@@ -264,7 +173,7 @@ export default function SectionPublikasi() {
                           href={item.link}
                           className="cursor-pointer text-center font-nunito font-semibold mt-1 border border-white text-white py-2 px-4 rounded-md hover:bg-sky-800 transition-all text-sm"
                         >
-                          Selengkapnya
+                          {t('hasilProyek.selengkapnya')}
                         </Link>
                       )}
                     </div>
@@ -273,7 +182,6 @@ export default function SectionPublikasi() {
               )}
             </div>
 
-            {/* Pagination */}
             {totalPages > 1 && (
               <div className="flex justify-center items-center gap-2 mt-10">
                 <button
@@ -281,7 +189,7 @@ export default function SectionPublikasi() {
                   disabled={currentPage === 1}
                   className="text-sm text-white hover:text-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Sebelumnya
+                  {t('hasilProyek.prev')}
                 </button>
 
                 {Array.from({ length: totalPages }).map((_, i) => (
@@ -303,7 +211,7 @@ export default function SectionPublikasi() {
                   disabled={currentPage === totalPages}
                   className="text-sm text-white hover:text-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 >
-                  Selanjutnya
+                  {t('hasilProyek.next')}
                 </button>
               </div>
             )}

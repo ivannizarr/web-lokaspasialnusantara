@@ -1,41 +1,49 @@
-import ScrollDownIndicator from "@/components/ScrollDownIndicator";
+'use client'
 
-const SectionAgrikultur = () => {
+import { useTranslation } from "react-i18next"
+import ScrollDownIndicator from "@/components/ScrollDownIndicator"
+
+const SectionFotoUdara = () => {
+  const { t } = useTranslation()
+
   return (
     <section
-      id="agrikultur"
+      id="foto-udara"
       className="flex flex-col w-full bg-cover bg-center text-white"
       style={{ backgroundImage: "url('/img/foto-udara.jpg')" }}
     >
       {/* Overlay hitam transparan */}
       <div className="absolute inset-0 bg-black/65"></div>
 
-      {/* Konten utama (centered + bg transparan gelap) */}
+      {/* Konten utama */}
       <div className="relative z-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center justify-center min-h-screen gap-8 text-center">
         <div className="mx-2 w-full max-w-5xl rounded-2xl bg-gray-950/50 px-6 py-6 text-white">
           <h2 className="font-montserrat mb-2 text-2xl sm:text-3xl md:text-3xl font-bold tracking-tight text-yellow-400 drop-shadow-[0_4px_80px_rgba(0,0,0,0.9)]">
-            FOTO UDARA
+            {t('fotoUdara.title')}
           </h2>
 
           <p className="font-nunito mb-4 text-sm sm:text-base md:text-lg leading-relaxed drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]">
-            Layanan pemetaan dan dokumentasi visual menggunakan drone beresolusi tinggi yang mampu menangkap citra udara secara detail dan presisi. Digunakan untuk kebutuhan survei, monitoring wilayah, pemetaan topografi, serta mendukung proses pengambilan keputusan berbasis data spasial secara cepat dan akurat.
+            {t('fotoUdara.description')}
           </p>
 
           <button
             onClick={() => (window.location.href = '/hubungi-kami')}
             className="font-nunito font-semibold cursor-pointer rounded-lg border border-white px-8 py-2 text-sm text-white transition hover:bg-sky-800"
           >
-            Hubungi Kami
+            {t('fotoUdara.button')}
           </button>
         </div>
       </div>
 
-      {/* Scroll Indicator & Footer */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+      {/* Scroll Indicator */}
+      <div>
+        <ScrollDownIndicator />
       </div>
-      <ScrollDownIndicator />
     </section>
-  );
-};
+  )
+}
 
-export default SectionAgrikultur;
+export default SectionFotoUdara
+
+
+

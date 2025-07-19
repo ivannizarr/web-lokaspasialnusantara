@@ -1,36 +1,198 @@
-{
-  "menu": {
+{ 
+  "nav": {
     "tentangKami": "About Us",
     "siapaKami": "Who We Are",
     "aktivitasKami": "Our Activities",
     "mitra": "Partners",
-    "karir": "Careers",
+    "karir": "Career",
     "administrasi": "Administration",
     "informasi": "Information",
     "publikasi": "Publications",
     "hasilProyek": "Project Results",
     "layanan": "Services",
-    "fotoUdara": "Aerial Photography",
+    "fotoUdara": "Aerial Photos",
     "iot": "Internet of Things",
-    "inspeksiTeknik": "Technical Inspection",
+    "inspeksi": "Technical Inspection",
     "penelitian": "Research",
     "agrikultur": "Agriculture",
     "telematika": "Telematics",
-    "webAplikasi": "Web Applications",
-    "layananLainnya": "Other Services",
+    "webapp": "Web Application",
+    "lainnya": "Other Services",
     "produk": "Products",
     "rumahTeknologi": "Tech House",
-    "genesisData": "Genesis Data",
-    "hubungiKami": "Contact Us"
+    "genesis": "Genesis Data",
+    "hubungiKami": "Contact Us",
+    "login": "Login",
+    "keluar": "Logout",
+    "dashboard": "Dashboard",
+    "bahasa": "English",
+    "switch": "Indonesia"
   },
-  "language": {
-    "id": "Indonesian",
-    "en": "English"
+  "slider": {
+    "slide1": {
+      "title": "INTERNET OF THINGS (IoT)",
+      "description": "Integration of work quality monitoring, work time efficiency, and data visualization are the trends we are working on today. Give us your concept, we will help you realize your IoT development.",
+      "button": "Read More"
+    },
+    "slide2": {
+      "title": "HIGH-ACCURACY DATA PROVIDER",
+      "description": "The use of UAV (Drone) technology, DGPS (Differential Global Positioning System), LIDAR (Light Detection and Ranging), and other technologies that we have, will make it easier for you to answer the needs of quality data.",
+      "button": "Read More"
+    },
+    "slide3": {
+      "title": "ECOSYSTEM RESTORATION INITIATIVE",
+      "description": "Through a conservation approach that rests on the pillars of protection, preservation and sustainable use, we facilitate communities in improving and managing ecosystem functions.",
+      "button": "Read More"
+    },
+    "slide4": {
+      "title": "SPECIALIZED TRAINING PROGRAMS",
+      "description": "We provide training for participatory mapping, spatial planning, disaster, spatial analysis, and other specific targets to help future decision-making.",
+      "button": "Read More"
+    },
+    "slide5": {
+      "title": "RESEARCH & DATA ANALYSIS SERVICES",
+      "description": "We provide research and data analysis services for multidisciplines. Natural resources, carbon, changing socio-cultural patterns, and environmental carrying capacity are part of our expertise.",
+      "button": "Read More"
+    }
   },
-  "login": "Login",
-  "home": {
-    "title": "INTERNET OF THINGS (IoT)",
-    "description": "Integrating work quality monitoring, time efficiency, and data visualization is our current focus. Share your concept and we’ll help you build your IoT solution.",
-    "button": "Learn more"
+    "siapaKami": {
+      "title": "Who We Are",
+      "description": "We, Loka Spasial Nusantara (Loka Spasial), are a non-construction consultancy company offering services across various sectors: information systems and technology, research (social, economic, environmental), spatial planning, technical inspection, special target monitoring and surveys, photogrammetry, land registration/cadastral, training and capacity building, as well as community empowerment in fisheries, agriculture, and forestry.",
+      "button": "Download Company Profile",
+      "modalTitle": "Fill in your details to download our company profile!",
+      "form": {
+        "name": "Full Name",
+        "email": "Email",
+        "reason": "Why do you want to download the company profile?",
+        "submit": "Download Company Profile",
+        "sending": "Sending...",
+        "error": "Please complete all fields correctly.",
+        "serverError": "Server error occurred. Please try again later.",
+        "networkError": "Failed to send data. Check your connection."
+      }
+    },
+  "aktivitasKami": {
+    "title": "Our Activities",
+    "description": "We contribute to strategic projects at both regional and national levels, initiated by government, private sectors, organizations, or individuals to support performance achievements. You can see the distribution of our work on the following map:",
+    "contact": "Contact Us"
+  },
+  "mitraKami": {
+    "title": "Partners",
+    "description": "We build partnerships with various stakeholders from different backgrounds. We welcome collaboration with all stakeholders to improve the economy, knowledge, and public awareness, and to make the planet better."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "heading": "Contact Us",
+    "description": "Do you still have questions after reading our website? Contact us via the following form or send us an email directly. We look forward to hearing from you.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Full name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "topic": "Topic",
+      "topicPlaceholder": "Partnership Opportunity",
+      "message": "Message",
+      "messagePlaceholder": "Write your message here",
+      "submit": "Submit"
+    },
+    "alert": {
+      "captcha": "Please verify the captcha first.",
+      "success": "Form submitted successfully!"
+    }
+  },
+  "karir": {
+    "title": "Job Vacancy",
+    "search": "Search",
+    "category": "Category",
+    "types": {
+      "Full Time": "Full Time",
+      "Part Time": "Part Time",
+      "Magang": "Internship"
+    },
+    "status": {
+      "Open": "Open",
+      "Closed": "Closed"
+    },
+    "apply": "Apply Now",
+    "noJob": "No matching job openings found.",
+    "prev": "Previous",
+    "next": "Next",
+    "emailSubject": "Job Application - {{title}}",
+    "emailBody": "Hello Loka Spasial Team,\nI am interested in applying for the {{title}} position.\nThank you."
+  },
+  "fotoUdara": {
+    "title": "AERIAL PHOTOS",
+    "description": "Mapping and visual documentation services using high-resolution drones capable of capturing detailed and precise aerial imagery. Used for survey needs, area monitoring, topographic mapping, and supporting fast and accurate spatial-data-based decision making.",
+    "button": "Contact Us"
+  },
+    "iot": {
+  "title": "INTERNET OF THINGS (IoT)",
+  "description": "We design and implement sensor-based systems connected via the internet to monitor, measure, and control various parameters in the field in real-time. This solution improves operational efficiency and enables smarter, more responsive decision-making.",
+  "button": "Contact Us"
+  },
+  "inspeksi": {
+  "title": "TECHNICAL INSPECTION",
+  "description": "Using technology such as drones and special sensors to inspect infrastructure, buildings, or other strategic assets. This process simplifies damage detection, routine monitoring, and technical documentation without disrupting field operations.",
+  "button": "Contact Us"
+  },
+  "penelitian": {
+  "title": "RESEARCH",
+  "description": "We support research activities through data collection, processing, and analysis using technology, in the fields of environment, social, and technical. Each research project is developed with a scientific approach and methodologies relevant to the needs of partners and communities.",
+  "button": "Contact Us"
+  },
+  "agrikultur": {
+  "title": "AGRICULTURE",
+  "description": "The application of technology to boost productivity and efficiency in the agricultural sector and rural development. This service includes land mapping, crop monitoring, and integration of information systems to support development based on data and local needs.",
+  "button": "Contact Us"
+  },
+  "telematika": {
+  "title": "TELEMATICS",
+  "description": "This service includes tracking and communication systems based on digital technology such as GPS and IoT, enabling accurate monitoring of moving assets. It is suitable for vehicles, ships, or other devices requiring full operational visibility.",
+  "button": "Contact Us"
+  },
+  "webapp": {
+  "title": "WEB APPLICATION",
+  "description": "We provide digital system development services, including informative websites, functional applications, and interactive dashboards. Each product is designed to meet user needs by considering UX/UI aspects, access speed, and integration with existing systems.",
+  "button": "Contact Us"
+  },
+  "lainnya": {
+  "title": "OTHER SERVICES",
+  "description": "In addition to our core services, we also provide technology solutions tailored to our partners' specific needs, ranging from information system development, data integration, to technical training. Every solution is developed with flexibility and adaptability according to your organization’s goals and challenges.",
+  "button": "Contact Us"
+  },
+  "publikasi": {
+  "title": "Publications",
+  "search": "Search",
+  "category": "Category",
+  "download": "Download",
+  "prev": "Previous",
+  "next": "Next",
+  "empty": "No matching publications found.",
+  "kategori": {
+    "Buku": "Book",
+    "Peraturan": "Regulation",
+    "Modul Pelatihan": "Training Module"
+  }
+},
+ "hasilProyek": {
+    "title": "Project Results",
+    "subtitle": "Loka Spasial Nusantara",
+    "search": "Search",
+    "category": "Category",
+    "selengkapnya": "Read More",
+    "empty": "No matching project results found.",
+    "prev": "Previous",
+    "next": "Next",
+    "kategori": {
+      "Foto Udara": "Aerial Photos",
+      "Internet of Things": "Internet of Things",
+      "Inspeksi Teknik": "Technical Inspection",
+      "Penelitian": "Research",
+      "Agrikultur": "Agriculture",
+      "Telematika": "Telematics",
+      "Website Aplikasi": "Web Application",
+      "Layanan Lainnya": "Other Services"
+    }
   }
 }
+

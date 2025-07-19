@@ -1,5 +1,5 @@
-{
-  "menu": {
+{ 
+  "nav": {
     "tentangKami": "Tentang Kami",
     "siapaKami": "Siapa Kami",
     "aktivitasKami": "Aktivitas Kami",
@@ -12,25 +12,187 @@
     "layanan": "Layanan",
     "fotoUdara": "Foto Udara",
     "iot": "Internet of Things",
-    "inspeksiTeknik": "Inspeksi Teknik",
+    "inspeksi": "Inspeksi Teknik",
     "penelitian": "Penelitian",
     "agrikultur": "Agrikultur",
     "telematika": "Telematika",
-    "webAplikasi": "Website Aplikasi",
-    "layananLainnya": "Layanan Lainnya",
+    "webapp": "Website Aplikasi",
+    "lainnya": "Layanan Lainnya",
     "produk": "Produk",
     "rumahTeknologi": "Rumah Teknologi",
-    "genesisData": "Genesis Data",
-    "hubungiKami": "Hubungi Kami"
+    "genesis": "Genesis Data",
+    "hubungiKami": "Hubungi Kami",
+    "login": "Login",
+    "keluar": "Keluar",
+    "dashboard": "Dashboard",
+    "bahasa": "Indonesia",
+    "switch": "English"
   },
-  "language": {
-    "id": "Indonesia",
-    "en": "Inggris"
+  "slider": {
+    "slide1": {
+      "title": "INTERNET OF THINGS (IoT)",
+      "description": "Integrasi monitoring kualitas kerja, efisiensi waktu kerja, dan visualisasi data menjadi tren yang kami kerjakan saat ini. Berikan konsep yang Anda miliki, kami akan membantu merealisasikan pengembangan IoT Anda.",
+      "button": "Selengkapnya"
+    },
+    "slide2": {
+      "title": "PENYEDIA DATA AKURASI TINGGI",
+      "description": "Penggunaan teknologi UAV (Drone), DGPS (Differential Global Positioning System), LIDAR (Light Detection and Ranging), serta teknologi lain yang kami miliki, akan memudahkan Anda menjawab kebutuhan data yang berkualitas.",
+      "button": "Selengkapnya"
+    },
+    "slide3": {
+      "title": "PENGEMBALIAN FUNGSI EKOSISTEM",
+      "description": "Melalui pendekatan konservasi yang bertumpu pada pilar perlindungan, pelestarian, dan pemanfaatan berkelanjutan, kami memfasilitasi masyarakat dalam perbaikan serta pengelolaan fungsi ekosistem.",
+      "button": "Selengkapnya"
+    },
+    "slide4": {
+      "title": "PELATIHAN TARGET KHUSUS",
+      "description": "Kami memberikan pelatihan untuk pemetaan partisipatif, perencanaan tata ruang, kebencanaan, analisis spasial, dan target khusus lainnya guna membantu pengambilan keputusan di masa depan.",
+      "button": "Selengkapnya"
+    },
+    "slide5": {
+      "title": "PENELITIAN DAN ANALISIS DATA",
+      "description": "Kami memberikan jasa penelitian dan analisis data untuk multidisiplin ilmu. Sumber daya alam, karbon, perubahan pola sosial-budaya, serta daya dukung dan daya tampung lingkungan menjadi bagian dari keahlian kami.",
+      "button": "Selengkapnya"
+    }
   },
-  "login": "Login",
-  "home": {
-    "title": "INTERNET OF THINGS (IoT)",
-    "description": "Integrasi monitoring kualitas kerja, efisiensi waktu kerja, dan visualisasi data menjadi tren yang kami kerjakan saat ini. Berikan konsep yang Anda miliki, kami akan membantu merealisasikan pengembangan IoT Anda.",
-    "button": "Selengkapnya"
+  "siapaKami": {
+    "title": "Siapa Kami",
+    "description": "Kami Loka Spasial Nusantara (Loka Spasial) bergerak di bidang jasa konsultansi Non-Kontruksi dengan klasifikasi layanan mencakup pada sektor: teknologi dan sistem informasi, penelitian (sosial-budaya, ekonomi, dan lingkungan), perencanaan tata ruang, inspeksi teknik, survey dan monitoring target khusus, fotogrametri, registrasi kepemilikan tanah/kadastral, pelatihan dan pengembangan kapasitas, hingga pemberdayaan masyarakat di sektor perikanan, pertanian, serta kehutanan.",
+    "button": "Unduh Profil Perusahaan",
+    "modalTitle": "Isi Data Diri Untuk Unduh Profil Perusahaan!",
+    "form": {
+      "name": "Nama Lengkap",
+      "email": "Email",
+      "reason": "Kenapa kamu ingin mengunduh profil perusahaan?",
+      "submit": "Unduh Profil Perusahaan",
+      "sending": "Mengirim...",
+      "error": "Mohon isi semua data dengan benar.",
+      "serverError": "Terjadi kesalahan server. Coba lagi nanti.",
+      "networkError": "Gagal mengirim data. Periksa koneksi Anda."
+    }
+  },
+  "aktivitasKami": {
+    "title": "Aktivitas Kami",
+    "description": "Kami berkontribusi dalam proyek strategis baik regional maupun nasional yang diinisiasi oleh pemerintah, swasta, organisasi, ataupun perorangan untuk mendukung pencapaian kinerja yang telah ditentukan. Sebaran pekerjaan kami dapat dilihat pada peta sebagai berikut:",
+    "contact": "Hubungi Kami"
+  },
+  "mitraKami": {
+    "title": "Mitra Kami",
+    "description": "Kami menjalin kemitraaan baik dengan berbagai latar belakang pemangku kepentingan. Kami membuka kolaborasi dengan semua pemangku kepentingan untuk meningkatkan perekonomian, pengetahuan, dan kesadaran masyarakat, serta membuat bumi lebih baik."
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "heading": "Hubungi Kami",
+    "description": "Apakah Anda masih ada pertanyaan setelah membaca website kami? Hubungi kami melalui formulir berikut atau kirim email langsung. Kami menantikan pesan dari Anda.",
+    "form": {
+      "name": "Nama",
+      "namePlaceholder": "Nama lengkap",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "topic": "Topik",
+      "topicPlaceholder": "Peluang Kerjasama",
+      "message": "Pesan",
+      "messagePlaceholder": "Tuliskan pesan Anda di sini",
+      "submit": "Kirim"
+    },
+    "alert": {
+      "captcha": "Verifikasi captcha terlebih dahulu.",
+      "success": "Form berhasil dikirim!"
+    }
+  },
+  "karir": {
+    "title": "Lowongan Kami",
+    "search": "Pencarian",
+    "category": "Kategori",
+    "types": {
+      "Full Time": "Full Time",
+      "Part Time": "Part Time",
+      "Magang": "Magang"
+    },
+    "status": {
+      "Open": "Buka",
+      "Closed": "Tutup"
+    },
+    "apply": "Lamar Sekarang",
+    "noJob": "Tidak ada lowongan yang cocok.",
+    "prev": "Sebelumnya",
+    "next": "Selanjutnya",
+    "emailSubject": "Lamar Pekerjaan - {{title}}",
+    "emailBody": "Halo Tim Loka Spasial,\nSaya tertarik melamar pekerjaan {{title}}.\nTerima kasih."
+  },
+  "fotoUdara": {
+    "title": "FOTO UDARA",
+    "description": "Layanan pemetaan dan dokumentasi visual menggunakan drone beresolusi tinggi yang mampu menangkap citra udara secara detail dan presisi. Digunakan untuk kebutuhan survei, monitoring wilayah, pemetaan topografi, serta mendukung proses pengambilan keputusan berbasis data spasial secara cepat dan akurat.",
+    "button": "Hubungi Kami"
+  },
+  "iot": {
+  "title": "INTERNET OF THINGS (IoT)",
+  "description": "Kami merancang dan mengimplementasikan sistem berbasis sensor yang terhubung melalui jaringan internet untuk memantau, mengukur, dan mengontrol berbagai parameter di lapangan secara real-time. Solusi ini membantu efisiensi operasional serta pengambilan keputusan yang lebih cerdas dan responsif.",
+  "button": "Hubungi Kami"
+  },
+  "inspeksi": {
+  "title": "INSPEKSI TEKNIK",
+  "description": "Menggunakan perangkat teknologi seperti drone dan sensor khusus untuk melakukan inspeksi terhadap infrastruktur, bangunan, atau aset strategis lainnya. Proses ini mempermudah deteksi kerusakan, pengawasan berkala, dan dokumentasi teknis tanpa perlu mengganggu operasional di lapangan.",
+  "button": "Hubungi Kami"
+  },
+  "penelitian": {
+  "title": "PENELITIAN",
+  "description": "Kami mendukung kegiatan riset melalui pengumpulan, pengolahan, dan analisis data berbasis teknologi, baik di bidang lingkungan, sosial, maupun teknis. Setiap proyek penelitian dikembangkan dengan pendekatan ilmiah dan metodologi yang relevan dengan kebutuhan mitra dan masyarakat.",
+  "button": "Hubungi Kami"
+  },
+  "agrikultur": {
+  "title": "AGRIKULTUR",
+  "description": "Penerapan teknologi untuk mendorong produktivitas dan efisiensi di sektor pertanian serta pengembangan kawasan pedesaan. Layanan ini mencakup pemetaan lahan, monitoring tanaman, serta integrasi sistem informasi untuk mendukung pembangunan yang berbasis data dan kebutuhan lokal.",
+  "button": "Hubungi Kami"
+  },
+  "telematika": {
+  "title": "TELEMATIKA",
+  "description": "Layanan ini mencakup sistem pelacakan dan komunikasi berbasis teknologi digital seperti GPS dan IoT, yang memungkinkan pemantauan aset bergerak secara akurat. Cocok digunakan untuk kendaraan, kapal, maupun perangkat lain yang memerlukan visibilitas operasional secara menyeluruh.",
+  "button": "Hubungi Kami"
+  },
+  "webapp": {
+  "title": "WEBSITE APLIKASI",
+  "description": "Kami menyediakan layanan pengembangan sistem digital yang mencakup website informatif, aplikasi fungsional, dan dashboard interaktif. Setiap produk dirancang sesuai kebutuhan pengguna dengan memperhatikan aspek UX/UI, kecepatan akses, dan integrasi dengan sistem yang sudah ada.",
+  "button": "Hubungi Kami"
+  },
+  "lainnya": {
+  "title": "LAYANAN LAINNYA",
+  "description": "Selain layanan utama, kami juga menyediakan solusi teknologi sesuai kebutuhan khusus mitra, mulai dari penyusunan sistem informasi, integrasi data, hingga pelatihan teknis. Setiap solusi dikembangkan secara fleksibel dan adaptif sesuai dengan tantangan dan tujuan organisasi Anda.",
+  "button": "Hubungi Kami"
+  },
+  "publikasi": {
+  "title": "Publikasi",
+  "subtitle": "Loka Spasial Nusantara",
+  "search": "Pencarian",
+  "category": "Kategori",
+  "download": "Unduh",
+  "prev": "Sebelumnya",
+  "next": "Selanjutnya",
+  "empty": "Tidak ada publikasi yang cocok.",
+  "kategori": {
+    "Buku": "Buku",
+    "Peraturan": "Peraturan",
+    "Modul Pelatihan": "Modul Pelatihan"
+  }
+},
+"hasilProyek": {
+    "title": "Hasil Proyek",
+    "subtitle": "Loka Spasial Nusantara",
+    "search": "Cari",
+    "category": "Kategori",
+    "selengkapnya": "Selengkapnya",
+    "empty": "Tidak ada hasil proyek yang cocok.",
+    "prev": "Sebelumnya",
+    "next": "Selanjutnya",
+    "kategori": {
+      "Foto Udara": "Foto Udara",
+      "Internet of Things": "Internet of Things",
+      "Inspeksi Teknik": "Inspeksi Teknik",
+      "Penelitian": "Penelitian",
+      "Agrikultur": "Agrikultur",
+      "Telematika": "Telematika",
+      "Website Aplikasi": "Website Aplikasi",
+      "Layanan Lainnya": "Layanan Lainnya"
+    }
   }
 }

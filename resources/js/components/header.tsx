@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, usePage } from '@inertiajs/react'
-import { Globe, ChevronDown, Menu, X } from 'lucide-react'
+import { Globe, ChevronDown, Menu, X, LogOut } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import i18n from '@/i18n'
 
 interface MenuItem {
   label: string
@@ -8,63 +10,89 @@ interface MenuItem {
   children?: MenuItem[]
 }
 
-const menus: MenuItem[] = [
-  {
-    label: 'Tentang Kami',
-    href: '',
-    children: [
-      { label: 'Siapa Kami', href: '/tentang-kami/siapa-kami' },
-      { label: 'Aktivitas Kami', href: '/tentang-kami/aktivitas-kami' },
-      { label: 'Mitra', href: '/tentang-kami/mitra' },
-      { label: 'Karir', href: '/tentang-kami/karir' },
-      { label: 'Administrasi', href: '/tentang-kami/administrasi' },
-    ],
-  },
-  {
-    label: 'Informasi',
-    href: '',
-    children: [
-      { label: 'Publikasi', href: '/informasi/publikasi' },
-      { label: 'Hasil Proyek', href: '/informasi/hasil-proyek' },
-    ],
-  },
-  {
-  label: 'Layanan',
-  href: '',
-  children: [
-    { label: 'Foto Udara', href: '/layanan/foto-udara' },
-    { label: 'Internet of Things', href: '/layanan/internet-of-things' },
-    { label: 'Inspeksi Teknik', href: '/layanan/inspeksi-teknik' },
-    { label: 'Penelitian', href: '/layanan/penelitian' },
-    { label: 'Agrikultur', href: '/layanan/agrikultur' },
-    { label: 'Telematika', href: '/layanan/telematika' },
-    { label: 'Website Aplikasi', href: '/layanan/website-aplikasi' },
-    { label: 'Layanan Lainnya', href: '/layanan/layanan-lainnya' },
-  ],
-  },
-  {
-    label: 'Produk',
-    href: '',
-    children: [
-      { label: 'Rumah Teknologi', href: '/produk/rumah-teknologi' },
-      { label: 'Genesis Data', href: '/produk/genesis-data' },
-    ],
-  },
-  { label: 'Hubungi Kami', href: '/hubungi-kami' },
-]
-
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [openSub, setOpenSub] = useState<Record<number, boolean>>({})
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [dropdownOpenMobile, setDropdownOpenMobile] = useState(false)
   const [showHeader, setShowHeader] = useState(true)
   const [scrolled, setScrolled] = useState(false)
   const lastScrollY = useRef(0)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
-  const { url } = usePage() as { url: string }
-  const isLoggedIn = false // ganti dengan auth real jika ada
+  const { url, props } = usePage() as { url: string; props: any }
+  const user = props.auth?.user
+  const isLoggedIn = !!user
 
-  /* ── scroll hide/reveal ─────────────────────────────── */
+  const { t } = useTranslation()
+
+  const toggleLang = () => {
+    const nextLang = i18n.language === 'id' ? 'en' : 'id'
+    i18n.changeLanguage(nextLang)
+    localStorage.setItem('lang', nextLang)
+  }
+
+  const getInitial = (name: string) => {
+    return name
+      .split(' ')
+      .map((n: string) => n[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase()
+  }
+
+  const menus: MenuItem[] = [
+    {
+      label: t('nav.tentangKami'),
+      href: '',
+      children: [
+        { label: t('nav.siapaKami'), href: '/tentang-kami/siapa-kami' },
+        { label: t('nav.aktivitasKami'), href: '/tentang-kami/aktivitas-kami' },
+        { label: t('nav.mitra'), href: '/tentang-kami/mitra' },
+        { label: t('nav.karir'), href: '/tentang-kami/karir' },
+        { label: t('nav.administrasi'), href: '/tentang-kami/administrasi' },
+      ],
+    },
+    {
+      label: t('nav.informasi'),
+      href: '',
+      children: [
+        { label: t('nav.publikasi'), href: '/informasi/publikasi' },
+        { label: t('nav.hasilProyek'), href: '/informasi/hasil-proyek' },
+      ],
+    },
+    {
+      label: t('nav.layanan'),
+      href: '',
+      children: [
+        { label: t('nav.fotoUdara'), href: '/layanan/foto-udara' },
+        { label: t('nav.iot'), href: '/layanan/internet-of-things' },
+        { label: t('nav.inspeksi'), href: '/layanan/inspeksi-teknik' },
+        { label: t('nav.penelitian'), href: '/layanan/penelitian' },
+        { label: t('nav.agrikultur'), href: '/layanan/agrikultur' },
+        { label: t('nav.telematika'), href: '/layanan/telematika' },
+        { label: t('nav.webapp'), href: '/layanan/website-aplikasi' },
+        { label: t('nav.lainnya'), href: '/layanan/layanan-lainnya' },
+      ],
+    },
+    {
+      label: t('nav.produk'),
+      href: '',
+      children: [
+        { label: t('nav.rumahTeknologi'), href: '/produk/rumah-teknologi' },
+        { label: t('nav.genesis'), href: '/produk/genesis-data' },
+      ],
+    },
+    { label: t('nav.hubungiKami'), href: '/hubungi-kami' },
+  ]
+
+  const toggleSub = (i: number) =>
+    setOpenSub((prev) => ({
+      ...Object.fromEntries(Object.keys(prev).map((k) => [k, false])),
+      [i]: !prev[i],
+    }))
+
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
@@ -76,29 +104,33 @@ const Header = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  /* ── mobile menu slide & outside click ──────────────── */
   useEffect(() => {
     const el = mobileMenuRef.current
     if (el) el.style.transform = menuOpen ? 'translateX(0%)' : 'translateX(100%)'
 
-    const handleOutside = (e: MouseEvent) => {
+    const handleOutsideMenu = (e: MouseEvent) => {
       if (menuOpen && el && !el.contains(e.target as Node)) setMenuOpen(false)
     }
-    document.addEventListener('mousedown', handleOutside)
-    return () => document.removeEventListener('mousedown', handleOutside)
+    document.addEventListener('mousedown', handleOutsideMenu)
+    return () => document.removeEventListener('mousedown', handleOutsideMenu)
   }, [menuOpen])
 
-  const toggleSub = (i: number) =>
-    setOpenSub((prev) => ({ ...Object.fromEntries(Object.keys(prev).map(k => [k, false])), [i]: !prev[i] }))
+  useEffect(() => {
+    const handleOutsideDropdown = (e: MouseEvent) => {
+      if (dropdownOpen && dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleOutsideDropdown)
+    return () => document.removeEventListener('mousedown', handleOutsideDropdown)
+  }, [dropdownOpen])
 
-  /* ── render ─────────────────────────────────────────── */
   return (
     <header
       className={`fixed top-0 z-[60] w-full transition-transform duration-500 ${
         showHeader ? 'translate-y-0' : '-translate-y-full'
       } ${scrolled ? 'bg-black/45' : ''}`}
     >
-      {/* desktop bar */}
       <div className="relative z-[60] mx-auto flex h-20 max-w-[1440px] items-center justify-between px-4 sm:px-6 xl:h-24 xl:px-8">
         <Link href="/" className="relative z-[70] select-none">
           <img
@@ -108,7 +140,6 @@ const Header = () => {
           />
         </Link>
 
-        {/* desktop nav */}
         <nav className="hidden items-center gap-6 xl:flex">
           {menus.map((m, i) => {
             const activeParent = m.href && url === m.href
@@ -134,7 +165,7 @@ const Header = () => {
                   )}
                 </div>
                 {m.children && (
-                  <div className="absolute left-[-10px] z-50 mt-0 hidden min-w-[140px] rounded-lg bg-black/70 py-1 text-white shadow-lg group-hover:block">
+                  <div className="absolute left-[-10px] z-50 mt-0 hidden min-w-[155px] rounded-lg bg-black/70 py-1 text-white shadow-lg group-hover:block">
                     {m.children.map((c) => (
                       <Link
                         key={c.href}
@@ -153,27 +184,64 @@ const Header = () => {
           })}
         </nav>
 
-        {/* desktop right */}
-        <div className="hidden items-center gap-10 xl:flex">
+        <div className="hidden items-center gap-10 xl:flex relative">
           <div className="font-nunito flex items-center gap-1 text-sm text-white">
-            <Globe size={18} />
-            <span className="cursor-pointer font-bold hover:text-yellow-400">Indonesia</span>
-            <span className="mx-1 text-xs">|</span>
-            <span className="cursor-pointer font-bold hover:text-yellow-400">English</span>
-          </div>
-          {!isLoggedIn ? (
-          <Link
-            href="/login"
-            className="cursor-pointer font-nunito rounded-lg border border-white px-8 py-1 text-sm font-semibold text-white transition hover:bg-sky-800"
+          <Globe size={18} />
+          <span
+            className={`cursor-pointer font-bold hover:text-yellow-400 ${
+              i18n.language === 'id' ? 'text-yellow-400' : ''
+            }`}
+            onClick={() => i18n.changeLanguage('id')}
           >
-            Login
-          </Link>
+            Indonesia
+          </span>
+          <span className="mx-1 text-xs">|</span>
+          <span
+            className={`cursor-pointer font-bold hover:text-yellow-400 ${
+              i18n.language === 'en' ? 'text-yellow-400' : ''
+            }`}
+            onClick={() => i18n.changeLanguage('en')}
+          >
+            English
+          </span>
+        </div>
+
+          {!isLoggedIn ? (
+            <Link
+              href="/login"
+              className="cursor-pointer font-nunito rounded-lg border border-white px-8 py-1 text-sm font-semibold text-white transition hover:bg-sky-800"
+            >
+              {t('nav.login')}
+            </Link>
           ) : (
-          <div className="h-9 w-9 rounded-full bg-yellow-400" />
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center gap-2 rounded-full px-3 py-2 focus:outline-none"
+              >
+                <div className="cursor-pointer h-8 w-8 rounded-full border-2 border-yellow-400 bg-sky-700 flex items-center justify-center text-white font-bold text-xs">
+                  {getInitial(user.name)}
+                </div>
+                <span className="text-white text-sm item-center font-bold cursor-pointer">{user.name}</span>
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-1 w-30 rounded-lg bg-black/70 px-4 py-2 text-base font-semibold text-white shadow-lg z-[99]">
+                  <Link href="/dashboard" className="block hover:text-yellow-400">{t('nav.dashboard')}</Link>
+                  <Link
+                    href="/logout"
+                    method="post"
+                    as="button"
+                    className="flex w-full cursor-pointer text-left text-red-500 hover:text-yellow-400"
+                  >
+                    {t('nav.keluar')}
+                  </Link>
+                </div>
+              )}
+            </div>
           )}
         </div>
 
-        {/* mobile hamburger */}
         <button
           aria-label="Buka menu"
           className="relative z-[80] text-white xl:hidden"
@@ -183,7 +251,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* MOBILE OVERLAY */}
       {menuOpen && (
         <>
           <div className="fixed inset-0 z-[60] bg-black/50" onClick={() => setMenuOpen(false)} />
@@ -248,24 +315,74 @@ const Header = () => {
                 </div>
               ))}
 
-              {/* Language & Login */}
-              <div className="mt-10 space-y-4 border-t border-black/20 pt-6 text-center">
+              <div className="space-y-4 border-t border-black/20 pt-6 text-center">
                 <div className="flex items-center justify-center gap-2 text-base">
-                  <Globe size={18} />
-                  <span className="cursor-pointer font-bold hover:text-yellow-500">Indonesia</span>
-                  <span className="mx-1">|</span>
-                  <span className="cursor-pointer font-bold hover:text-yellow-500">English</span>
-                </div>
+                <Globe size={18} />
+                <span
+                  className={`cursor-pointer font-bold hover:text-yellow-500 ${
+                    i18n.language === 'id' ? 'text-yellow-500' : ''
+                  }`}
+                  onClick={() => i18n.changeLanguage('id')}
+                >
+                  Indonesia
+                </span>
+                <span className="mx-1">|</span>
+                <span
+                  className={`cursor-pointer font-bold hover:text-yellow-500 ${
+                    i18n.language === 'en' ? 'text-yellow-500' : ''
+                  }`}
+                  onClick={() => i18n.changeLanguage('en')}
+                >
+                  English
+                </span>
+              </div>
+
                 {!isLoggedIn ? (
-                <Link
-                href="/login"
-                className="w-full text-center rounded-lg border border-black px-35 py-2 font-semibold hover:bg-[#02517A] hover:text-white"
-              >
-                Login
-              </Link>
-              ) : (
-                <div className="mx-auto h-10 w-10 rounded-full bg-yellow-500" />
-              )}
+                  <Link
+                    href="/login"
+                    className="w-full text-center rounded-lg border border-black px-35 py-2 font-semibold hover:bg-[#02517A] hover:text-white"
+                  >
+                    {t('nav.login')}
+                  </Link>
+                ) : (
+                  <div className="space-y-3 text-left">
+                    <button
+                      onClick={() => setDropdownOpenMobile(!dropdownOpenMobile)}
+                      className="flex w-full items-center justify-center gap-3 focus:outline-none"
+                    >
+                      <div className="h-10 w-10 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold text-sm">
+                        {getInitial(user.name)}
+                      </div>
+                      <span className="font-semibold">{user.name}</span>
+                      <ChevronDown
+                        size={18}
+                        className={`transition-transform duration-300 ${
+                          dropdownOpenMobile ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+
+                    {dropdownOpenMobile && (
+                      <div className="space-y-2 mt-2 text-center">
+                        <Link
+                          href="/dashboard"
+                          className="block text-base hover:text-yellow-500"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {t('nav.dashboard')}
+                        </Link>
+                        <Link
+                          href="/logout"
+                          method="post"
+                          as="button"
+                          className="flex w-full items-center justify-center gap-2 text-red-500 hover:text-red-700"
+                        >
+                          {t('nav.keluar')}
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>

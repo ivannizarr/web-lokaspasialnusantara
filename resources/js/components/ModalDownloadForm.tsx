@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
+import { Dialog, LoaderCircle } from '@headlessui/react';
 import { X } from 'lucide-react';
 
 export default function ModalDownloadForm({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -62,9 +62,10 @@ export default function ModalDownloadForm({ open, onClose }: { open: boolean; on
             required
           />
           {error && <p className="text-red-500 text-sm">{error}</p>}
-          <button type="submit" className="w-full bg-sky-800 text-white py-2 rounded">
-            Unduh Sekarang
-          </button>
+          <Button type="submit" className="font-semibold mt-4 w-full cursor-pointer" tabIndex={4} disabled={processing}>
+          {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
+          Unduh Sekarang
+          </Button>
         </form>
       </div>
     </Dialog>
