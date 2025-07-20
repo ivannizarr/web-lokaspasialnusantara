@@ -3,7 +3,7 @@ import Footer from '@/components/footer'
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage } from "@/components/ui/breadcrumb"
 import { type BreadcrumbItem as ItemType } from '@/types'
 import { type ReactNode } from 'react'
-import { useTranslation } from 'react-i18next' // ✅ Tambahan untuk multibahasa
+import { useTranslation } from 'react-i18next' 
 
 interface AppLayoutProps {
     children: ReactNode;
@@ -11,8 +11,7 @@ interface AppLayoutProps {
 }
 
 export default function AppLayout({ children, breadcrumbs }: AppLayoutProps) {
-    const { t } = useTranslation() // ✅ Inisialisasi i18next
-
+    const { t } = useTranslation() /
     return (
         <>
             <Header />
@@ -23,9 +22,9 @@ export default function AppLayout({ children, breadcrumbs }: AppLayoutProps) {
                         {breadcrumbs.map((item, idx) => (
                             <BreadcrumbItem key={idx}>
                                 {item.href ? (
-                                    <BreadcrumbLink href={item.href}>{t(item.title)}</BreadcrumbLink> // ✅ Gunakan i18n
+                                    <BreadcrumbLink href={item.href}>{t(item.title)}</BreadcrumbLink> 
                                 ) : (
-                                    <BreadcrumbPage>{t(item.title)}</BreadcrumbPage> // ✅ Gunakan i18n
+                                    <BreadcrumbPage>{t(item.title)}</BreadcrumbPage> 
                                 )}
                             </BreadcrumbItem>
                         ))}
