@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 interface ProfileCardProps {
   user: {
@@ -11,6 +12,7 @@ interface ProfileCardProps {
 }
 
 export default function ProfileCard({ user, getInitial }: ProfileCardProps) {
+  const { t } = useTranslation()
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [form, setForm] = useState({
@@ -59,12 +61,12 @@ export default function ProfileCard({ user, getInitial }: ProfileCardProps) {
       <button
         type="button"
         onClick={() => fileInputRef.current?.click()}
-        className="text-sky-400 hover:text-yellow-400 cursor-pointer text-sm underline mb-4"
+        className="text-sky-400 hover:text-yellow-400 cursor-pointer text-sm underline mb-2"
       >
-        Pilih Gambar
+        {t('profile.chooseImage')}
       </button>
       <p className="text-xs text-gray-300 mb-4">
-        Ukuran maksimal 2MB (.jpg, .png, .jpeg)
+        {t('profile.maxSize')}
       </p>
       <input
         type="file"
@@ -78,7 +80,7 @@ export default function ProfileCard({ user, getInitial }: ProfileCardProps) {
       <div className="w-full border-t border-gray-600 pt-2">
         <div className="space-y-3 text-sm">
           <DataItem
-            label="Nama"
+            label={t('profile.name')}
             value={form.name}
             isEditing={editingField === 'name'}
             onChange={(e) => handleChange('name', e.target.value)}
@@ -86,7 +88,7 @@ export default function ProfileCard({ user, getInitial }: ProfileCardProps) {
             onSave={() => handleSave('name')}
           />
           <DataItem
-            label="Email"
+            label={t('profile.email')}
             value={form.email}
             isEditing={editingField === 'email'}
             onChange={(e) => handleChange('email', e.target.value)}
@@ -94,15 +96,15 @@ export default function ProfileCard({ user, getInitial }: ProfileCardProps) {
             onSave={() => handleSave('email')}
           />
           <DataItem
-            label="Nomor Telepon"
-            value={form.phone || 'Belum diisi'}
+            label={t('profile.phone')}
+            value={form.phone || t('profile.notFilled')}
             isEditing={editingField === 'phone'}
             onChange={(e) => handleChange('phone', e.target.value)}
             onEdit={() => setEditingField('phone')}
             onSave={() => handleSave('phone')}
           />
           <DataItem
-            label="Password"
+            label={t('profile.password')}
             value={form.password || '********'}
             isEditing={editingField === 'password'}
             type={showPassword ? 'text' : 'password'}
@@ -143,47 +145,51 @@ const DataItem = ({
   showToggle = false,
   showValue = false,
   onToggle,
-}: DataItemProps) => (
-  <div className="flex justify-between items-start border-b border-gray-600 pb-2">
-    <div className="flex-1 pr-4">
-      <p className="text-gray-300">{label}</p>
-      {isEditing ? (
-        <div className="flex gap-2 items-center mt-1 relative">
-          <div className="relative w-full">
-            <input
-              type={type}
-              value={value}
-              onChange={onChange}
-              className="bg-gray-600 text-white rounded px-2 py-1 text-sm w-full pr-8"
-            />
-            {showToggle && (
-              <button
-                type="button"
-                onClick={onToggle}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
-              >
-                {showValue ? <EyeOff size={16} /> : <Eye size={16} />}
-              </button>
-            )}
+}: DataItemProps) => {
+  const { t } = useTranslation()
+
+  return (
+    <div className="flex justify-between items-start border-b border-gray-600 pb-2">
+      <div className="flex-1 pr-4">
+        <p className="text-gray-300">{label}</p>
+        {isEditing ? (
+          <div className="flex gap-2 items-center mt-1 relative">
+            <div className="relative w-full">
+              <input
+                type={type}
+                value={value}
+                onChange={onChange}
+                className="bg-gray-600 text-white rounded px-2 py-1 text-sm w-full pr-8"
+              />
+              {showToggle && (
+                <button
+                  type="button"
+                  onClick={onToggle}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                >
+                  {showValue ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              )}
+            </div>
+            <button
+              onClick={onSave}
+              className="text-xs text-sky-400 hover:text-yellow-400 underline"
+            >
+              {t('profile.save')}
+            </button>
           </div>
-          <button
-            onClick={onSave}
-            className="text-xs text-sky-400 hover:text-yellow-400 underline"
-          >
-            Simpan
-          </button>
-        </div>
-      ) : (
-        <p className="font-medium text-white mt-1">{value}</p>
+        ) : (
+          <p className="font-medium text-white mt-1">{value}</p>
+        )}
+      </div>
+      {!isEditing && onEdit && (
+        <button
+          onClick={onEdit}
+          className="text-sky-400 hover:text-yellow-400 text-sm font-semibold mt-2 cursor-pointer"
+        >
+          {t('profile.edit')}
+        </button>
       )}
     </div>
-    {!isEditing && onEdit && (
-      <button
-        onClick={onEdit}
-        className="text-sky-400 hover:text-yellow-400 text-sm font-semibold mt-2 cursor-pointer"
-      >
-        Ubah
-      </button>
-    )}
-  </div>
-)
+  )
+}

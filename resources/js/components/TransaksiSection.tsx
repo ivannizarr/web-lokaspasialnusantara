@@ -1,30 +1,35 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function TransaksiSection() {
+  const { t } = useTranslation()
+
   const [transaksiList] = useState(() => [
     {
       id: generateId(),
       tanggal: '10 Juli 2025',
-      deskripsi: 'Pembayaran Genesis Data Area 1',
+      deskripsi: t('transaksi.item1'),
       jumlah: 'Rp1.250.000',
     },
     {
       id: generateId(),
       tanggal: '5 Juli 2025',
-      deskripsi: 'Pembayaran Genesis Data Area 3',
+      deskripsi: t('transaksi.item2'),
       jumlah: 'Rp500.000',
     },
     {
       id: generateId(),
       tanggal: '28 Juni 2025',
-      deskripsi: 'Pembayaran Genesis Data Area 10',
+      deskripsi: t('transaksi.item3'),
       jumlah: 'Rp2.000.000',
     },
   ])
 
   return (
     <div className="bg-gray-700 text-white shadow rounded-lg p-8 flex flex-col items-center max-w-xxl mx-auto">
-      <h2 className="text-xl font-bold mb-6 text-center">Riwayat Transaksi</h2>
+      <h2 className="text-xl font-bold mb-6 text-center">
+        {t('transaksi.title')}
+      </h2>
 
       <div className="w-full border-t border-gray-600 pt-4 space-y-4 text-sm">
         {transaksiList.map((trx) => (
@@ -49,17 +54,20 @@ interface TransaksiItemProps {
 }
 
 function TransaksiItem({ id, tanggal, deskripsi, jumlah }: TransaksiItemProps) {
+  const { t } = useTranslation()
   return (
     <div className="flex justify-between border-b border-gray-600 pb-2">
       <div>
         <p className="text-gray-300">{tanggal}</p>
         <p className="font-medium text-white">{deskripsi}</p>
-        <p className="text-xs text-gray-400">ID Transaksi: {id}</p>
+        <p className="text-xs text-gray-400">
+          {t('transaksi.id')}: {id}
+        </p>
       </div>
       <div className="text-right">
         <p className="text-gray-300 font-semibold">{jumlah}</p>
         <button className="cursor-pointer text-sm text-sky-400 hover:text-yellow-400 hover:underline mt-1">
-          Lihat Detail
+          {t('transaksi.detail')}
         </button>
       </div>
     </div>

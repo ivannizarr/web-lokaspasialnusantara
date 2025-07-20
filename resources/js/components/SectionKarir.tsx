@@ -4,31 +4,35 @@ import { useState, useEffect } from 'react'
 import { MapPin, CalendarDays, Search } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
-const jobTypes = ['Full Time', 'Part Time', 'Magang'] as const
+const jobTypes = ['Full_Time', 'Part_Time', 'Internship'] as const
 const JOBS_PER_PAGE = 4
 
 type Karir = {
   title: string
   location: string
   year: string
-  type: string
-  status: string
+  type: string // ← KEY-nya, bukan label
+  status: string // ← KEY-nya, bukan label
   description: string
 }
 
 export default function JobListSection({ id = 'karir' }: { id?: string }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [jobs, setJobs] = useState<Karir[]>([])
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
+  // Load JSON file berdasarkan bahasa aktif
   useEffect(() => {
-    fetch('/data/karir.json')
+    const lang = i18n.language || 'id'
+    const url = `/data/${lang}/karir.json`
+
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setJobs(data))
       .catch((err) => console.error('Gagal memuat data karir:', err))
-  }, [])
+  }, [i18n.language])
 
   const toggleType = (type: string) => {
     setSelectedTypes((prev) =>
@@ -100,7 +104,9 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                         checked={selectedTypes.includes(type)}
                         onChange={() => toggleType(type)}
                       />
-                      <span className="text-white font-medium">{t(`karir.types.${type}`)}</span>
+                      <span className="text-white font-medium">
+                        {t(`karir.types.${type}`)}
+                      </span>
                     </div>
                     <span className="text-white text-sm font-semibold">
                       {jobCounts[type]}
@@ -165,7 +171,9 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                         window.open(
                           `mailto:admin@lokaspasial.com?subject=${encodeURIComponent(
                             t('karir.emailSubject', { title: job.title })
-                          )}&body=${encodeURIComponent(t('karir.emailBody', { title: job.title }))}`,
+                          )}&body=${encodeURIComponent(
+                            t('karir.emailBody', { title: job.title })
+                          )}`,
                           '_blank'
                         )
                       }

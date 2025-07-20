@@ -170,7 +170,7 @@ const Header = () => {
                       <Link
                         key={c.href}
                         href={c.href}
-                        className={`block px-3 py-0 text-sm hover:text-yellow-400 ${
+                        className={`block px-3 py-0 text-sm hover:text-yellow-400 hover:bg-white/30 rounded ${
                           url === c.href ? 'text-yellow-400 font-semibold' : ''
                         }`}
                       >
@@ -219,25 +219,31 @@ const Header = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-2 rounded-full px-3 py-2 focus:outline-none"
               >
-                <div className="cursor-pointer h-8 w-8 rounded-full border-2 border-yellow-400 bg-sky-700 flex items-center justify-center text-white font-bold text-xs">
+                <div className="cursor-pointer h-8 w-8 rounded-full border-2 border-gray-300 bg-sky-700 flex items-center justify-center text-gray-300 font-bold text-xs">
                   {getInitial(user.name)}
                 </div>
-                <span className="text-white text-sm item-center font-bold cursor-pointer">{user.name}</span>
+                <span className="text-gray-300 text-sm item-center font-bold cursor-pointer">{user.name}</span>
               </button>
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-1 w-30 rounded-lg bg-black/70 px-4 py-2 text-base font-semibold text-white shadow-lg z-[99]">
-                  <Link href="/dashboard" className="block hover:text-yellow-400">{t('nav.dashboard')}</Link>
-                  <Link
-                    href="/logout"
-                    method="post"
-                    as="button"
-                    className="flex w-full cursor-pointer text-left text-red-500 hover:text-yellow-400"
-                  >
-                    {t('nav.keluar')}
-                  </Link>
-                </div>
-              )}
+              <div className="absolute right-0 w-40 rounded-lg bg-black/70 px-3 py-3 text-base text-white shadow-xl z-[99] space-y-0">
+                <Link
+                  href="/dashboard"
+                  className="block w-full rounded-md px-4 py-2 text-center font-semibold hover:bg-white/30 hover:text-yellow-400 transition"
+                >
+                  {t('nav.dashboard')}
+                </Link>
+                <Link
+                href="/logout"
+                method="post"
+                as="button"
+                className="flex items-center justify-center gap-2 w-full rounded-md px-4 py-2 text-center font-bold text-red-500 hover:text-red-600 hover:bg-white/30 transition"
+              >
+                <LogOut size={18} />
+                {t('nav.keluar')}
+              </Link>
+              </div>
+            )}
             </div>
           )}
         </div>
@@ -256,11 +262,11 @@ const Header = () => {
           <div className="fixed inset-0 z-[60] bg-black/50" onClick={() => setMenuOpen(false)} />
           <div
             ref={mobileMenuRef}
-            className="fixed top-0 right-0 z-[70] h-screen w-[90%] max-w-sm border-l border-white/30 bg-white px-6 text-black shadow-2xl transition-transform duration-500 sm:px-10"
+            className="fixed top-0 right-0 z-[70] h-screen w-[90%] max-w-sm bg-gray-800 px-6 text-white shadow-2xl transition-transform duration-400 sm:px-10"
           >
             <button
               aria-label="Tutup menu"
-              className="absolute top-6 right-4 z-[80]"
+              className="absolute top-6 right-4 z-[60]"
               onClick={() => setMenuOpen(false)}
             >
               <X size={32} />
@@ -290,7 +296,7 @@ const Header = () => {
                             <Link
                               key={c.href}
                               href={c.href}
-                              className={`block text-base text-gray-700 hover:text-yellow-400 ${
+                              className={`block text-base text-white hover:text-yellow-400 ${
                                 url === c.href ? 'text-yellow-400 font-semibold' : ''
                               }`}
                               onClick={() => setMenuOpen(false)}
@@ -315,7 +321,7 @@ const Header = () => {
                 </div>
               ))}
 
-              <div className="space-y-4 border-t border-black/20 pt-6 text-center">
+              <div className="space-y-4 border-t border-white/50 pt-4 text-center">
                 <div className="flex items-center justify-center gap-2 text-base">
                 <Globe size={18} />
                 <span
@@ -340,47 +346,48 @@ const Header = () => {
                 {!isLoggedIn ? (
                   <Link
                     href="/login"
-                    className="w-full text-center rounded-lg border border-black px-35 py-2 font-semibold hover:bg-[#02517A] hover:text-white"
+                    className="w-full text-center rounded-lg border border-white px-35 py-2 font-semibold hover:bg-[#02517A] hover:text-white"
                   >
                     {t('nav.login')}
                   </Link>
                 ) : (
-                  <div className="space-y-3 text-left">
+                  <div className="space-y-3 border-t border-white/50 text-left">
                     <button
                       onClick={() => setDropdownOpenMobile(!dropdownOpenMobile)}
-                      className="flex w-full items-center justify-center gap-3 focus:outline-none"
+                      className="flex mt-4 bg-gray-700 px-2 py-2 rounded-lg w-full items-center justify-center gap-3 focus:outline-none"
                     >
-                      <div className="h-10 w-10 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold text-sm">
+                      <div className="h-8 w-8 cursor-pointer rounded-full border-2 border-gray-300 bg-sky-700 flex items-center justify-center text-gray-300 font-bold text-sm">
                         {getInitial(user.name)}
                       </div>
-                      <span className="font-semibold">{user.name}</span>
+                      <span className="cursor-pointer font-semibold text-gray-300">{user.name}</span>
                       <ChevronDown
                         size={18}
-                        className={`transition-transform duration-300 ${
+                        className={`text-gray-300 transition-transform duration-300 ${
                           dropdownOpenMobile ? 'rotate-180' : ''
                         }`}
                       />
                     </button>
 
                     {dropdownOpenMobile && (
-                      <div className="space-y-2 mt-2 text-center">
-                        <Link
-                          href="/dashboard"
-                          className="block text-base hover:text-yellow-500"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {t('nav.dashboard')}
+                    <div className="mt-1 w-full rounded-lg bg-gray-700 px-4 py-3 text-base text-white shadow-lg space-y-2">
+                      <Link
+                        href="/dashboard"
+                        className="block w-full rounded-md bg-white/10 px-4 py-2 text-center font-semibold text-white hover:bg-white/20 transition"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {t('nav.dashboard')}
+                      </Link>
+                      <Link
+                        href="/logout"
+                        method="post"
+                        as="button"
+                        className="flex items-center justify-center gap-2 w-full rounded-md px-4 py-2 text-center font-bold text-red-500 hover:bg-white/10 transition"
+                      >
+                        <LogOut size={18} />
+                        {t('nav.keluar')}
                         </Link>
-                        <Link
-                          href="/logout"
-                          method="post"
-                          as="button"
-                          className="flex w-full items-center justify-center gap-2 text-red-500 hover:text-red-700"
-                        >
-                          {t('nav.keluar')}
-                        </Link>
-                      </div>
-                    )}
+                    </div>
+                  )}
                   </div>
                 )}
               </div>

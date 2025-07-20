@@ -28,6 +28,73 @@
     "bahasa": "English",
     "switch": "Indonesia"
   },
+  "login": {
+  "title": "Log in",
+  "description": "Enter your email and password below to log in.",
+  "email": "Email",
+  "password": "Password",
+  "forgot": "Forgot password?",
+  "remember": "Remember me",
+  "button": "Log in",
+  "noAccount": "Don't have an account?",
+  "register": "Sign up"
+  },
+  "register": {
+  "title": "Register",
+  "description": "Enter your details below to create your account.",
+  "name": "Full Name",
+  "namePlaceholder": "Enter full name",
+  "email": "Email",
+  "emailPlaceholder": "email@example.com",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "submit": "Create Account",
+  "alreadyAccount": "Already have an account?",
+  "login": "Log in"
+  },
+  "forgot": {
+  "title": "Forgot Password",
+  "description": "Enter your email to receive a password reset link.",
+  "email": "Email",
+  "emailPlaceholder": "email@example.com",
+  "submit": "Email password reset link",
+  "backTo": "Or, return to",
+  "login": "Log in"
+  },
+  "dashboard": {
+  "menu": {
+    "dashboard": "Dashboard",
+    "transaksi": "Transactions",
+    "pengaturan": "Settings"
+  },
+  "title": {
+    "dashboard": "Dashboard",
+    "transaksi": "Transactions",
+    "pengaturan": "Settings"
+  },
+  "welcome": "Welcome {{name}}, to the Loka Spasial Dashboard!",
+  "logout": "Log out",
+  "back": "Back to Main Page"
+  },
+  "profile": {
+  "chooseImage": "Choose Image",
+  "maxSize": "Max size 2MB (.jpg, .png, .jpeg)",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone Number",
+  "password": "Password",
+  "save": "Save",
+  "edit": "Edit",
+  "notFilled": "Not filled in yet"
+  },
+  "transaksi": {
+  "title": "Transaction History",
+  "item1": "Payment for Genesis Data Area 1",
+  "item2": "Payment for Genesis Data Area 3",
+  "item3": "Payment for Genesis Data Area 10",
+  "id": "Transaction ID",
+  "detail": "View Details"
+  },
   "slider": {
     "slide1": {
       "title": "INTERNET OF THINGS (IoT)",
@@ -35,7 +102,7 @@
       "button": "Read More"
     },
     "slide2": {
-      "title": "HIGH-ACCURACY DATA PROVIDER",
+      "title": "HIGH ACCURACY DATA PROVIDER",
       "description": "The use of UAV (Drone) technology, DGPS (Differential Global Positioning System), LIDAR (Light Detection and Ranging), and other technologies that we have, will make it easier for you to answer the needs of quality data.",
       "button": "Read More"
     },
@@ -78,7 +145,12 @@
   },
   "mitraKami": {
     "title": "Partners",
-    "description": "We build partnerships with various stakeholders from different backgrounds. We welcome collaboration with all stakeholders to improve the economy, knowledge, and public awareness, and to make the planet better."
+    "description": "We build partnerships with various stakeholders from different backgrounds. We welcome collaboration with all stakeholders to improve the economy, knowledge, and public awareness, and to make the planet better.",
+    "notFound": "Data mitra tidak ditemukan.",
+    "since": "Bermitra Sejak",
+    "type": "Jenis Kemitraan",
+    "location": "Lokasi",
+    "noDescription": "Deskripsi belum tersedia."
   },
   "contact": {
     "title": "Contact Us",
@@ -105,9 +177,9 @@
     "search": "Search",
     "category": "Category",
     "types": {
-      "Full Time": "Full Time",
-      "Part Time": "Part Time",
-      "Magang": "Internship"
+      "Full_Time": "Full Time",
+      "Part_Time": "Part Time",
+      "Internship": "Internship"
     },
     "status": {
       "Open": "Open",

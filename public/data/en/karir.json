@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Fisheries Surveyor",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Internship",
+    "status": "Open",
+    "description": "We are looking for fresh graduates to conduct surveys on fishermen's catches in Badung Regency. Must be able to ride a motorcycle and have a smartphone for data recording."
+  },
+  {
+    "title": "Mapping Surveyor",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Part_Time",
+    "Internship": "Internship",
+    "status": "Closed",
+    "description": "We are looking for fresh graduates to survey subak mapping data in Tabanan Regency. Must be able to ride a motorcycle and have a smartphone for field surveys."
+  },
+  {
+    "title": "Administrative Staff",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Full_Time",
+    "status": "Closed",
+    "description": "Looking for administrative staff with at least 1 year of experience in company financial management. No certificate required."
+  },
+  {
+    "title": "Technical Leader",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Full_Time",
+    "status": "Open",
+    "description": "Looking for a project team leader. Must have at least 2 years of experience and be able to manage a team effectively. No certificate required."
+  },
+  {
+    "title": "GIS Specialist",
+    "location": "Denpasar, Bali",
+    "year": "2024",
+    "type": "Part_Time",
+    "status": "Open",
+    "description": "Proficient in using QGIS or ArcGIS. Able to analyze spatial data. Minimum 1 year of experience."
+  }
+]

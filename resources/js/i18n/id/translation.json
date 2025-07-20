@@ -28,6 +28,73 @@
     "bahasa": "Indonesia",
     "switch": "English"
   },
+  "login": {
+  "title": "Masuk",
+  "description": "Masukkan email dan password untuk masuk.",
+  "email": "Email",
+  "password": "Kata Sandi",
+  "forgot": "Lupa kata sandi?",
+  "remember": "Ingat saya",
+  "button": "Masuk",
+  "noAccount": "Belum punya akun?",
+  "register": "Daftar"
+  },
+  "register": {
+  "title": "Daftar",
+  "description": "Masukkan data diri Anda untuk membuat akun.",
+  "name": "Nama Lengkap",
+  "namePlaceholder": "Masukkan nama lengkap",
+  "email": "Email",
+  "emailPlaceholder": "email@example.com",
+  "password": "Kata Sandi",
+  "confirmPassword": "Konfirmasi Kata Sandi",
+  "submit": "Buat Akun",
+  "alreadyAccount": "Sudah punya akun?",
+  "login": "Masuk"
+  },
+  "forgot": {
+  "title": "Lupa Kata Sandi",
+  "description": "Masukkan email Anda untuk menerima tautan reset password.",
+  "email": "Email",
+  "emailPlaceholder": "email@example.com",
+  "submit": "Kirim Tautan Reset Password",
+  "backTo": "Atau, kembali ke",
+  "login": "Masuk"
+  },
+  "dashboard": {
+  "menu": {
+    "dashboard": "Dashboard",
+    "transaksi": "Transaksi",
+    "pengaturan": "Pengaturan"
+  },
+  "title": {
+    "dashboard": "Dashboard",
+    "transaksi": "Transaksi",
+    "pengaturan": "Pengaturan"
+  },
+  "welcome": "Selamat Datang {{name}}, di Dashboard Loka Spasial!",
+  "logout": "Keluar",
+  "back": "Kembali ke Halaman Utama"
+  },
+  "profile": {
+  "chooseImage": "Pilih Gambar",
+  "maxSize": "Ukuran maksimal 2MB (.jpg, .png, .jpeg)",
+  "name": "Nama",
+  "email": "Email",
+  "phone": "Nomor Telepon",
+  "password": "Password",
+  "save": "Simpan",
+  "edit": "Ubah",
+  "notFilled": "Belum diisi"
+  },
+  "transaksi": {
+  "title": "Riwayat Transaksi",
+  "item1": "Pembayaran Genesis Data Area 1",
+  "item2": "Pembayaran Genesis Data Area 3",
+  "item3": "Pembayaran Genesis Data Area 10",
+  "id": "ID Transaksi",
+  "detail": "Lihat Detail"
+  },
   "slider": {
     "slide1": {
       "title": "INTERNET OF THINGS (IoT)",
@@ -105,9 +172,9 @@
     "search": "Pencarian",
     "category": "Kategori",
     "types": {
-      "Full Time": "Full Time",
-      "Part Time": "Part Time",
-      "Magang": "Magang"
+      "Full_Time": "Penuh Waktu",
+      "Part_Time": "Paruh Waktu",
+      "Internship": "Magang"
     },
     "status": {
       "Open": "Buka",

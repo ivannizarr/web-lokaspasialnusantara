@@ -1,6 +1,8 @@
 import { Head, Link, usePage } from '@inertiajs/react'
 import { useEffect, useRef, useState } from 'react'
 import { Menu, X, Home, User, FileText, LogOut, MoveLeft } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+
 import ProfileCard from '@/components/ProfileCard'
 import TransaksiSection from '@/components/TransaksiSection'
 
@@ -10,6 +12,8 @@ export default function Dashboard() {
   const section = props.section 
   const [menuOpen, setMenuOpen] = useState(false)
   const overlayRef = useRef(null)
+
+  const { t } = useTranslation()
 
   const getInitial = (name: string) => {
     return name
@@ -40,9 +44,9 @@ export default function Dashboard() {
   }, [menuOpen])
 
   const menuItems = [
-    { label: 'Dashboard', href: '/dashboard', icon: Home },
-    { label: 'Transaksi', href: '/dashboard/transaksi', icon: FileText },
-    { label: 'Pengaturan', href: '/dashboard/profile', icon: User },
+    { label: t('dashboard.menu.dashboard'), href: '/dashboard', icon: Home },
+    { label: t('dashboard.menu.transaksi'), href: '/dashboard/transaksi', icon: FileText },
+    { label: t('dashboard.menu.pengaturan'), href: '/dashboard/profile', icon: User },
   ]
 
   return (
@@ -64,12 +68,15 @@ export default function Dashboard() {
               <p className="mt-2 font-semibold text-center">{user.name}</p>
             </div>
 
+            {/* Divider */}
+            <div className="border-t border-gray-600 mb-4" />
+
             <nav className="space-y-2 text-sm">
               {menuItems.map(({ label, href, icon: Icon }) => {
                 const isActive =
-                  (label === 'Pengaturan' && section === 'profile') ||
-                  (label === 'Transaksi' && section === 'transaksi') ||
-                  (label === 'Dashboard' &&
+                  (label === t('dashboard.menu.pengaturan') && section === 'profile') ||
+                  (label === t('dashboard.menu.transaksi') && section === 'transaksi') ||
+                  (label === t('dashboard.menu.dashboard') &&
                     (!section || section === 'home' || section === undefined))
 
                 return (
@@ -90,7 +97,7 @@ export default function Dashboard() {
             </nav>
           </div>
 
-          <div className="pt-4 border-t border-gray-700">
+          <div className="pt-4 border-t border-gray-600">
             <Link
               href="/logout"
               method="post"
@@ -98,7 +105,7 @@ export default function Dashboard() {
               className="flex items-center gap-2 text-red-500 font-semibold hover:text-red-700"
             >
               <LogOut size={18} />
-              Keluar
+              {t('dashboard.logout')}
             </Link>
           </div>
         </aside>
@@ -115,52 +122,53 @@ export default function Dashboard() {
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
             <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-yellow-400 hover:underline"
-          >
-            <MoveLeft size={16} strokeWidth={2} />
-            Kembali ke Halaman Utama
-          </Link>
+              href="/"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-yellow-400 hover:underline"
+            >
+              <MoveLeft size={16} strokeWidth={2} />
+              {t('dashboard.back')}
+            </Link>
           </div>
 
           <main className="flex-1 overflow-y-auto p-6 md:p-8">
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-xl font-bold capitalize">
                 {section === 'profile'
-                  ? 'Pengaturan'
+                  ? t('dashboard.title.pengaturan')
                   : section === 'transaksi'
-                  ? 'Transaksi'
-                  : 'Dashboard'}
+                  ? t('dashboard.title.transaksi')
+                  : t('dashboard.title.dashboard')}
               </h1>
+
               <Link
-              href="/"
-              className="hidden xl:inline-block text-sm font-semibold hover:text-yellow-400 text-white"
-            >
-              <span className="inline-flex items-center gap-2 hover:underline">
-                <MoveLeft size={16} strokeWidth={2} />
-                Kembali ke Halaman Utama
-              </span>
-            </Link>
+                href="/"
+                className="hidden xl:inline-block text-sm font-semibold hover:text-yellow-400 text-white"
+              >
+                <span className="inline-flex items-center gap-2 hover:underline">
+                  <MoveLeft size={16} strokeWidth={2} />
+                  {t('dashboard.back')}
+                </span>
+              </Link>
             </div>
 
-           {section === 'profile' ? (
-        <>
-          <Head title="Pengaturan">
-            <meta name="description" content="Edit dan kelola profil Anda" />
-          </Head>
-          <ProfileCard user={user} getInitial={getInitial} />
-        </>
-      ) : section === 'transaksi' ? (
-        <>
-          <Head title="Transaksi">
-            <meta name="description" content="Lihat riwayat dan detail transaksi Anda" />
-          </Head>
-          <TransaksiSection />
-        </>
-      ) : (
+            {section === 'profile' ? (
+              <>
+                <Head title={t('dashboard.title.pengaturan')}>
+                  <meta name="description" content="Edit dan kelola profil Anda" />
+                </Head>
+                <ProfileCard user={user} getInitial={getInitial} />
+              </>
+            ) : section === 'transaksi' ? (
+              <>
+                <Head title={t('dashboard.title.transaksi')}>
+                  <meta name="description" content="Lihat riwayat dan detail transaksi Anda" />
+                </Head>
+                <TransaksiSection />
+              </>
+            ) : (
               <div className="bg-gray-700 rounded-lg shadow p-6 text-white text-center">
                 <h2 className="text-lg font-semibold mb-2">
-                  Selamat Datang  {(user.name)}, di Dashboard Loka Spasial!
+                  {t('dashboard.welcome', { name: user.name })}
                 </h2>
               </div>
             )}
