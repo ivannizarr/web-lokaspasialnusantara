@@ -11,8 +11,8 @@ type Karir = {
   title: string
   location: string
   year: string
-  type: string // ← KEY-nya, bukan label
-  status: string // ← KEY-nya, bukan label
+  type: string 
+  status: string 
   description: string
 }
 
