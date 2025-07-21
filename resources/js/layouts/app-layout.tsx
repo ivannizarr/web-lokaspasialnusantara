@@ -11,7 +11,7 @@ interface AppLayoutProps {
 }
 
 export default function AppLayout({ children, breadcrumbs }: AppLayoutProps) {
-    const { t } = useTranslation() /
+    const { t } = useTranslation() 
     return (
         <>
             <Header />

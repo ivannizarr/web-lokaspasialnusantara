@@ -172,8 +172,8 @@
     "search": "Pencarian",
     "category": "Kategori",
     "types": {
-      "Full_Time": "Penuh Waktu",
-      "Part_Time": "Paruh Waktu",
+      "Full_Time": "Full Time",
+      "Part_Time": "Part Time",
       "Internship": "Magang"
     },
     "status": {

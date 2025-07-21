@@ -65,7 +65,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
   return (
     <section
       id={id}
-      className="relative z-10 pt-8 mt-0 bg-gray-600 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
+      className="relative z-10 pt-8 mt-0 bg-gray-700 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
     >
       <div className="max-w-screen-xl mx-auto space-y-12">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-center text-yellow-400 font-extrabold font-nunito border-b border-white pb-6">
@@ -128,7 +128,7 @@ export default function JobListSection({ id = 'karir' }: { id?: string }) {
                 currentJobs.map((job, idx) => (
                   <div
                     key={idx}
-                    className="bg-gray-900 border border-white/20 rounded-lg p-6 flex flex-col justify-between gap-4 hover:border-sky-800 transition-all"
+                    className="bg-gray-900 border border-sky-800 rounded-lg p-6 flex flex-col justify-between gap-4 hover:border-sky-800 transition-all"
                   >
                     <div className="space-y-3">
                       <div className="flex justify-between items-start flex-wrap gap-2">

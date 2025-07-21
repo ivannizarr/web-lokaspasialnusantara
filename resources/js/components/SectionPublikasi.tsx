@@ -112,7 +112,7 @@ export default function SectionPublikasi() {
   return (
     <section
       id="publikasi"
-      className="bg-gray-600 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
+      className="bg-gray-700 text-foreground py-6 px-6 sm:px-6 md:px-10 lg:px-16"
     >
       <div className="max-w-screen-xl mx-auto space-y-12">
         <div className="border-b border-white pb-6">
@@ -173,7 +173,7 @@ export default function SectionPublikasi() {
                 {currentData.map((item, idx) => (
                   <div
                     key={idx}
-                    className="h-full border border-white/10 bg-gray-900 rounded-lg overflow-hidden shadow hover:shadow-lg transition-all flex flex-col"
+                    className="h-full border border-sky-800 bg-gray-900 rounded-lg overflow-hidden shadow hover:shadow-lg transition-all flex flex-col"
                   >
                     <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
                     <div className="p-5 flex flex-col justify-between gap-4 flex-grow">

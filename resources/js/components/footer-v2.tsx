@@ -8,7 +8,7 @@ const Footer2 = () => {
   const { t } = useTranslation()
 
   return (
-    <footer className="w-full bg-[#02517A] px-6 md:px-11 py-10 flex flex-col items-center gap-7 text-white">
+    <footer className="w-full bg-gray-800 px-6 md:px-11 py-10 flex flex-col items-center gap-7 text-white">
       <div className="w-full max-w-[1300px] flex flex-col gap-10">
         {/* Info dan menu link */}
         <div className="flex flex-col md:flex-row justify-between gap-12 text-sm md:text-base font-nunito">
@@ -56,10 +56,10 @@ const Footer2 = () => {
 
               {/* Tentang Kami */}
               <div>
-                <h4 className="font-bold mb-4 text-base sm:text-lg tracking-wide">
+                <h4 className="font-bold mb-4 text-sm sm:text-lg tracking-wide">
                   {t('nav.tentangKami')}
                 </h4>
-                <ul className="space-y-2 font-nunito font-normal text-lg text-gray-300">
+                <ul className="space-y-2 font-nunito font-semibold text-base text-gray-300">
                   {[
                     { label: t('nav.siapaKami'), href: '/tentang-kami/siapa-kami' },
                     { label: t('nav.aktivitasKami'), href: '/tentang-kami/aktivitas-kami' },
@@ -80,7 +80,7 @@ const Footer2 = () => {
                 <h4 className="font-bold mb-4 text-base sm:text-lg tracking-wide">
                   {t('nav.layanan')}
                 </h4>
-                <ul className="space-y-2 font-nunito font-semibold text-gray-300">
+                <ul className="space-y-2 font-nunito font-semibold text-base text-gray-300">
                   {[
                     { label: t('nav.fotoUdara'), href: '/layanan/foto-udara' },
                     { label: t('nav.iot'), href: '/layanan/internet-of-things' },
@@ -105,7 +105,7 @@ const Footer2 = () => {
                 <h4 className="font-bold mb-4 text-base sm:text-lg tracking-wide">
                   {t('nav.informasi')}
                 </h4>
-                <ul className="space-y-2 font-nunito font-semibold text-gray-300">
+                <ul className="space-y-2 font-nunito font-semibold text-base text-gray-300">
                   {[
                     { label: t('nav.publikasi'), href: '/informasi/publikasi' },
                     { label: t('nav.hasilProyek'), href: '/informasi/hasil-proyek' },
@@ -124,7 +124,7 @@ const Footer2 = () => {
                 <h4 className="font-bold mb-4 text-base sm:text-lg tracking-wide">
                   {t('nav.produk')}
                 </h4>
-                <ul className="space-y-2 font-nunito font-semibold text-gray-300">
+                <ul className="space-y-2 font-nunito font-semibold text-base text-gray-300">
                   {[
                     { label: t('nav.rumahTeknologi'), href: '/produk/rumah-teknologi' },
                     { label: t('nav.genesis'), href: '/produk/genesis-data' },

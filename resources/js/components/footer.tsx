@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
     <footer
       className={`fixed bottom-0 z-40 w-full px-4 py-2 text-xs font-light text-white backdrop-blur-sm sm:text-sm transition-transform duration-300 ${
         showFooter ? 'translate-y-0' : 'translate-y-full'
-      } bg-[#02517A] border-t border-gray-400/30 shadow-lg`}
+      } bg-[#02517A]`}
     >
       <div className="relative flex w-full items-center justify-center">
         {/* Teks footer */}

@@ -34,7 +34,7 @@ const SectionMitraKami = ({ id = "mitra" }: { id?: string }) => {
   return (
     <section
       id={id}
-      className="relative z-10 pt-8 w-full bg-gray-500 px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
+      className="relative z-10 pt-8 w-full bg-gray-800 px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
     >
       <div className="container w-full max-w-[1300px] border-b border-white pb-6">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-center text-yellow-400 font-extrabold font-nunito">

@@ -23,7 +23,7 @@ export default function MitraDetail({ partner }: Props) {
     <AppLayout>
       <Head title={`${partner.name}`} />
 
-      <section className="min-h-screen w-full bg-gray-600 py-20 px-4 sm:px-6">
+      <section className="min-h-screen w-full bg-gray-700 py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Logo */}
           <div className="flex justify-center pt-20 mb-6">

@@ -44,7 +44,7 @@ export default function ContactPage() {
     <AppLayout>
       <Head title={t('contact.title')} />
 
-      <div className="flex flex-col min-h-screen bg-gray-600 text-white overflow-x-hidden">
+      <div className="flex flex-col min-h-screen bg-gray-900 text-white overflow-x-hidden">
         
         {/* HERO */}
         <section
@@ -95,7 +95,7 @@ export default function ContactPage() {
             </div>
 
             {/* Formulir */}
-            <div className="w-full max-w-lg bg-gray-900 rounded-lg shadow p-6 border border-sky-800">
+            <div className="w-full max-w-lg bg-gray-800 rounded-lg shadow p-6 border border-sky-800">
               <form className="flex flex-col text-white gap-5" onSubmit={handleSubmit}>
 
                 <div className="flex flex-col gap-1">

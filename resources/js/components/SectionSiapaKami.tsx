@@ -6,10 +6,21 @@ import ScrollDownIndicator from '@/components/ScrollDownIndicator'
 import Footer from '@/components/footer'
 import { Dialog } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
+import { usePage } from '@inertiajs/react'
 
 const SectionSiapaKami = () => {
   const [openModal, setOpenModal] = useState(false)
   const { t } = useTranslation()
+  const { auth } = usePage().props as unknown as { auth: { user: any } }
+
+  const handleClickDownload = () => {
+    if (!auth?.user) {
+      // Redirect ke login dan setelah login kembali ke #siapa-kami
+      window.location.href = '/login?redirect_to=siapa-kami'
+    } else {
+      setOpenModal(true)
+    }
+  }
 
   return (
     <section
@@ -17,21 +28,19 @@ const SectionSiapaKami = () => {
       className="relative flex flex-col w-full bg-cover bg-center"
       style={{ backgroundImage: "url('/head.jpg')" }}
     >
-      {/* Overlay hitam transparan */}
-      <div className="absolute inset-0 bg-black/65"></div>
+      <div className="absolute inset-0 bg-black/65" />
 
-      {/* Konten utama */}
       <div className="relative z-10 px-4 sm:px-6 md:px-10 lg:px-20 flex flex-col items-center justify-center min-h-screen gap-5 text-center">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-yellow-400 font-extrabold font-nunito drop-shadow-[0_4px_80px_rgba(0,0,0,0.9)]">
           {t('siapaKami.title')}
         </h2>
 
-        <p className="font-nunito text-sm sm:text-base md:text-lg font-medium leading-relaxed drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)] max-w-5xl mx-auto text-center text-white">
+        <p className="font-nunito text-sm sm:text-base md:text-lg font-medium leading-relaxed drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)] max-w-5xl mx-auto text-white">
           {t('siapaKami.description')}
         </p>
 
         <button
-          onClick={() => setOpenModal(true)}
+          onClick={handleClickDownload}
           className="cursor-pointer mx-auto flex items-center gap-3 px-5 py-2 text-sm font-semibold text-white border border-white rounded-md hover:bg-sky-800 transition-all duration-100"
         >
           {t('siapaKami.button')}
@@ -48,7 +57,7 @@ const SectionSiapaKami = () => {
 
 export default SectionSiapaKami
 
-// Komponen Modal form
+// Modal Komponen
 const DownloadModal = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
   const [form, setForm] = useState({ name: '', email: '', reason: '' })
   const [error, setError] = useState('')
@@ -93,17 +102,15 @@ const DownloadModal = ({ open, onClose }: { open: boolean; onClose: () => void }
   return (
     <Dialog open={open} onClose={onClose} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
       <Dialog.Panel className="bg-white text-black p-6 rounded shadow max-w-lg w-full space-y-4 relative">
-        {/* Header modal */}
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-nunito font-semibold text-black">
             {t('siapaKami.modalTitle')}
           </h3>
-          <button onClick={onClose}>
+          <button onClick={onClose} aria-label="Close modal">
             <X className="w-5 h-5 text-gray-500 hover:text-black" />
           </button>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"

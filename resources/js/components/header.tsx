@@ -165,12 +165,12 @@ const Header = () => {
                   )}
                 </div>
                 {m.children && (
-                  <div className="absolute left-[-10px] z-50 mt-0 hidden min-w-[155px] rounded-lg bg-black/70 py-1 text-white shadow-lg group-hover:block">
+                  <div className="absolute left-[-15px] z-50 mt-0 hidden min-w-[160px] rounded-lg bg-black/70 py-1 text-white shadow-lg group-hover:block">
                     {m.children.map((c) => (
                       <Link
                         key={c.href}
                         href={c.href}
-                        className={`block px-3 py-0 text-sm hover:text-yellow-400 hover:bg-white/30 rounded ${
+                        className={`block px-4 py-0 text-sm hover:text-yellow-400 hover:bg-white/30 rounded ${
                           url === c.href ? 'text-yellow-400 font-semibold' : ''
                         }`}
                       >
@@ -226,10 +226,10 @@ const Header = () => {
               </button>
 
               {dropdownOpen && (
-              <div className="absolute right-0 w-40 rounded-lg bg-black/70 px-3 py-3 text-base text-white shadow-xl z-[99] space-y-0">
+              <div className="absolute right-0 w-30 rounded-lg bg-black/70 px-1 py-1 text-sm text-white shadow-xl z-[99] space-y-0">
                 <Link
                   href="/dashboard"
-                  className="block w-full rounded-md px-4 py-2 text-center font-semibold hover:bg-white/30 hover:text-yellow-400 transition"
+                  className="block w-full rounded-md px-4 py-1 text-center font-semibold hover:bg-white/30 hover:text-yellow-400 transition"
                 >
                   {t('nav.dashboard')}
                 </Link>
@@ -237,7 +237,7 @@ const Header = () => {
                 href="/logout"
                 method="post"
                 as="button"
-                className="flex items-center justify-center gap-2 w-full rounded-md px-4 py-2 text-center font-bold text-red-500 hover:text-red-600 hover:bg-white/30 transition"
+                className="flex items-center justify-center gap-1 w-full rounded-md px-4 py-1 text-center font-bold text-red-500 hover:text-red-600 hover:bg-white/30 transition"
               >
                 <LogOut size={18} />
                 {t('nav.keluar')}

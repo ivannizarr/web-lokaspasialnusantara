@@ -3,16 +3,15 @@
 import { useEffect, useState } from "react"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import MarkerClusterGroup from "react-leaflet-cluster"
-import L from "leaflet"
+import L, { LatLngExpression } from "leaflet"
 import "leaflet/dist/leaflet.css"
-import { Link } from "@inertiajs/react"
 import { useTranslation } from 'react-i18next'
 
-// Fix icon Leaflet default (bundler modern seperti Vite/Webpack5)
+// icon Leaflet default
 delete (L.Icon.Default.prototype as any)._getIconUrl
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
 })
 
@@ -40,10 +39,12 @@ const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
       .catch((err) => console.error("Gagal load data aktivitas:", err))
   }, [])
 
+  const mapCenter: LatLngExpression = [-2.5, 118]
+
   return (
     <section
       id={id}
-      className="relative z-10 pt-8 w-full bg-gray-600 text-white px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
+      className="relative z-10 pt-8 w-full bg-gray-700 text-white px-4 sm:px-6 md:px-10 lg:px-16 py-20 flex flex-col items-center gap-10"
     >
       <div className="container w-full max-w-[1300px] border-b border-white pb-6">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl text-center text-yellow-400 font-extrabold font-nunito">
@@ -57,7 +58,12 @@ const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
 
       {isClient && (
         <div className="w-full h-[500px] max-w-7xl rounded-xl overflow-hidden shadow-lg ring-1 ring-white/10">
-          <MapContainer center={[-2.5, 118]} zoom={4.5} scrollWheelZoom className="h-full w-full">
+          <MapContainer
+            center={mapCenter}
+            zoom={4.5}
+            scrollWheelZoom
+            className="h-full w-full"
+          >
             <TileLayer
               url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               attribution='&copy; <a href="https://carto.com/">CARTO</a>'
@@ -69,11 +75,14 @@ const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
               spiderfyOnMaxZoom={true}
             >
               {aktivitas.map((item, idx) => (
-                <Marker key={idx} position={[item.location.lat, item.location.lng]}>
+                <Marker
+                  key={idx}
+                  position={[item.location.lat, item.location.lng] as LatLngExpression}
+                >
                   <Popup>
-                    <div className=" max-w font-nunito space-y-2 text-black rounded-sm p-2 py-4">
+                    <div className="max-w-xs font-nunito space-y-2 text-black rounded-sm p-2 py-4">
                       <h3 className="font-semibold text-xs leading-snug">{item.title}</h3>
-                      <p className="text-xs text-base font-nunito leading-relaxed">{item.description}</p>
+                      <p className="text-xs leading-relaxed">{item.description}</p>
                       <a
                         href={item.link.includes("@") ? `mailto:${item.link}` : item.link}
                         target="_blank"

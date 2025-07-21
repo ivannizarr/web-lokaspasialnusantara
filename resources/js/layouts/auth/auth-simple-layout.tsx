@@ -17,7 +17,7 @@ export default function AuthSimpleLayout({ children, title, description }: Props
                 backgroundPosition: 'center',
             }}
         >
-            <div className="absolute inset-0 bg-gray-950/50" />
+            <div className="fixed overflow-hidden inset-0 bg-gray-950/50" />
             <div className="w-full max-w-sm">
                 <div className="relative bg-gray-900 gap-7 px-8 py-3 rounded-lg shadow-xl">
                     <div className="flex flex-col items-center gap-2">

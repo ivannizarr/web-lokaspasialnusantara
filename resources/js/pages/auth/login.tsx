@@ -106,7 +106,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
             <Label htmlFor="remember">{t('login.remember')}</Label>
           </div>
 
-          <Button type="submit" className="font-semibold mt-4 w-full cursor-pointer" tabIndex={4} disabled={processing}>
+          <Button type="submit" className="font-semibold w-full cursor-pointer" tabIndex={4} disabled={processing}>
             {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
             {t('login.button')}
           </Button>

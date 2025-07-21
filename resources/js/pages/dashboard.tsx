@@ -119,7 +119,7 @@ export default function Dashboard() {
           {/* Topbar Mobile */}
           <div className="flex items-center justify-between bg-gray-800 px-4 py-3 xl:hidden">
             <button onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              {menuOpen ? <X size={30} /> : <Menu size={30} />}
             </button>
             <Link
               href="/"
