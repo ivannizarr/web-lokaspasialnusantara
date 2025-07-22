@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { X } from 'lucide-react'
-import ScrollDownIndicator from '@/components/ScrollDownIndicator'
+import ScrollDownIndicator from '@/components/scroll-down-indicator'
 import Footer from '@/components/footer'
 import { Dialog } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
@@ -101,13 +101,13 @@ const DownloadModal = ({ open, onClose }: { open: boolean; onClose: () => void }
 
   return (
     <Dialog open={open} onClose={onClose} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <Dialog.Panel className="bg-white text-black p-6 rounded shadow max-w-lg w-full space-y-4 relative">
+      <Dialog.Panel className="bg-gray-800 text-white p-6 rounded-lg shadow max-w-xl w-full space-y-4 relative">
         <div className="flex justify-between items-center">
-          <h3 className="text-lg font-nunito font-semibold text-black">
+          <h3 className="text-lg font-nunito font-semibold text-white">
             {t('siapaKami.modalTitle')}
           </h3>
           <button onClick={onClose} aria-label="Close modal">
-            <X className="w-5 h-5 text-gray-500 hover:text-black" />
+            <X className="w-6 h-6 text-gray-500 hover:text-white" />
           </button>
         </div>
 
@@ -139,7 +139,7 @@ const DownloadModal = ({ open, onClose }: { open: boolean; onClose: () => void }
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-sky-800 text-white py-2 rounded hover:bg-sky-900 text-sm font-semibold"
+            className="w-full bg-sky-800 text-white py-2 rounded hover:bg-sky-900 text-sm font-semibold cursor-pointer"
           >
             {loading ? t('siapaKami.form.sending') : t('siapaKami.form.submit')}
           </button>

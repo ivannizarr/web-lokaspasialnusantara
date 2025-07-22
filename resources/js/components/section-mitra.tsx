@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import PartnerSliderRow from "@/components/CarouselLogo"
+import PartnerSliderRow from "@/components/carousel-logo"
 import { useTranslation } from "react-i18next"
 
 interface Mitra {

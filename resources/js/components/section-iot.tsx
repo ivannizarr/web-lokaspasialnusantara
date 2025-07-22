@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslation } from "react-i18next"
-import ScrollDownIndicator from "@/components/ScrollDownIndicator"
+import ScrollDownIndicator from "@/components/scroll-down-indicator"
 
 const SectionIoT = () => {
   const { t } = useTranslation()

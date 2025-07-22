@@ -30,7 +30,7 @@ export default function ModalDownloadForm({ open, onClose }: { open: boolean; on
   };
 
   return (
-    <Dialog open={open} onClose={onClose} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+    <Dialog open={open} onClose={onClose} className="fixed inset-0 z-50 flex items-center justify-center bg-black/65">
       <div className="bg-white p-6 w-full max-w-md rounded shadow">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-bold">Isi Data untuk Unduh Profil</h3>
