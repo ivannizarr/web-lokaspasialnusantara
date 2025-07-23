@@ -2,15 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { SlideItem } from '@/types/slide-item'
 
-interface SlideItem {
-  slide: {
-    image: string
-    key: string
-  }
+interface SlideProps {
+  slide: SlideItem
 }
 
-const Slide = ({ slide }: SlideItem) => {
+const Slide = ({ slide }: SlideProps) => {
   const { t } = useTranslation()
 
   return (

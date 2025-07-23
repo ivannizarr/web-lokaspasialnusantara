@@ -3,8 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import { Menu, X, Home, User, FileText, LogOut, MoveLeft } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
-import ProfileCard from '@/components/ProfileCard'
-import TransaksiSection from '@/components/TransaksiSection'
+import ProfileCard from '@/components/profile-card'
+import TransaksiSection from '@/components/transaksi-section'
+import { getInitial } from '@/lib/utils' 
+
 
 export default function Dashboard() {
   const { props, url } = usePage() as { props: any; url: string }
@@ -14,15 +16,6 @@ export default function Dashboard() {
   const overlayRef = useRef(null)
 
   const { t } = useTranslation()
-
-  const getInitial = (name: string) => {
-    return name
-      .split(' ')
-      .map((n: string) => n[0])
-      .join('')
-      .slice(0, 2)
-      .toUpperCase()
-  }
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -68,7 +61,6 @@ export default function Dashboard() {
               <p className="mt-2 font-semibold text-center">{user.name}</p>
             </div>
 
-            {/* Divider */}
             <div className="border-t border-gray-600 mb-4" />
 
             <nav className="space-y-2 text-sm">
@@ -116,7 +108,6 @@ export default function Dashboard() {
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Topbar Mobile */}
           <div className="flex items-center justify-between bg-gray-800 px-4 py-3 xl:hidden">
             <button onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X size={30} /> : <Menu size={30} />}

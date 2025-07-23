@@ -66,7 +66,7 @@ const SectionAktivitasKami = ({ id = "aktivitas-kami" }: { id?: string }) => {
           >
             <TileLayer
               url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-              attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+              attribution='&copy; <a href="https://carto.com/">Carto & Loka Spasial Nusantara</a>'
             />
 
             <MarkerClusterGroup

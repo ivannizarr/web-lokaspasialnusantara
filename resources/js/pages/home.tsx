@@ -1,13 +1,11 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import Slide from '@/components/slide'
 import Dots from '@/components/dots'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
-
-interface SlideItem {
-  image: string
-  key: string
-}
+import { SlideItem } from '@/types/slide-item'
 
 const slides: SlideItem[] = [
   { image: '/bg1.jpg', key: 'slider.slide1' },

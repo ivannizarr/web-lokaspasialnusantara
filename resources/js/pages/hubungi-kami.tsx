@@ -1,11 +1,11 @@
 'use client'
 
-import { Head } from '@inertiajs/react'
+import { Head, useForm } from '@inertiajs/react'
 import AppLayout from '@/layouts/app-layout'
-import { useRef, useState, ChangeEvent, FormEvent } from 'react'
+import { useRef, ChangeEvent, FormEvent } from 'react'
 import { Phone, Mail, MapPin } from 'lucide-react'
-import ScrollDownIndicator from '@/components/ScrollDownIndicator'
-import ReCaptchaWrapper, { ReCaptchaRef } from '@/components/ReCaptcha'
+import ScrollDownIndicator from '@/components/scroll-down-indicator'
+import ReCaptchaWrapper, { ReCaptchaRef } from '@/components/re-captcha'
 import { Label } from '@/components/ui/label'
 import { useTranslation } from 'react-i18next'
 
@@ -13,17 +13,18 @@ export default function ContactPage() {
   const captchaRef = useRef<ReCaptchaRef>(null)
   const { t } = useTranslation()
 
-  const [form, setForm] = useState({
+  const { data, setData, post, processing, errors, reset } = useForm({
     name: '',
     email: '',
     topic: '',
     message: '',
+    captcha: '',
   })
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    setData(e.target.name as keyof typeof data, e.target.value)
   }
 
   const handleSubmit = (e: FormEvent) => {
@@ -35,9 +36,15 @@ export default function ContactPage() {
       return
     }
 
-    console.log({ ...form, captcha: token })
-    alert(t('contact.alert.success'))
-    captchaRef.current?.reset()
+    setData('captcha', token)
+
+    post(route('contact.send'), {
+      onSuccess: () => {
+        alert(t('contact.alert.success'))
+        reset()
+        captchaRef.current?.reset()
+      },
+    })
   }
 
   return (
@@ -105,7 +112,7 @@ export default function ContactPage() {
                     type="text"
                     name="name"
                     placeholder={t('contact.form.namePlaceholder')}
-                    value={form.name}
+                    value={data.name}
                     onChange={handleChange}
                     className="border border-gray-400 rounded-md px-4 py-2 bg-gray-800 text-white placeholder-gray-500"
                     required
@@ -119,7 +126,7 @@ export default function ContactPage() {
                     type="email"
                     name="email"
                     placeholder={t('contact.form.emailPlaceholder')}
-                    value={form.email}
+                    value={data.email}
                     onChange={handleChange}
                     className="border border-gray-400 rounded-md px-4 py-2 bg-gray-800 text-white placeholder-gray-500"
                     required
@@ -133,7 +140,7 @@ export default function ContactPage() {
                     type="text"
                     name="topic"
                     placeholder={t('contact.form.topicPlaceholder')}
-                    value={form.topic}
+                    value={data.topic}
                     onChange={handleChange}
                     className="border border-gray-400 rounded-md px-4 py-2 bg-gray-800 text-white placeholder-gray-500"
                   />
@@ -146,7 +153,7 @@ export default function ContactPage() {
                     name="message"
                     placeholder={t('contact.form.messagePlaceholder')}
                     rows={4}
-                    value={form.message}
+                    value={data.message}
                     onChange={handleChange}
                     className="border border-gray-400 rounded-md px-4 py-2 bg-gray-800 text-white placeholder-gray-500"
                     required
@@ -158,6 +165,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   className="bg-sky-800 text-white py-2 px-5 cursor-pointer rounded-md font-semibold hover:bg-sky-900 transition w-full"
+                  disabled={processing}
                 >
                   {t('contact.form.submit')}
                 </button>

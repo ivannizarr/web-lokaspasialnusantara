@@ -100,14 +100,14 @@ const DownloadModal = ({ open, onClose }: { open: boolean; onClose: () => void }
   }
 
   return (
-    <Dialog open={open} onClose={onClose} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+    <Dialog open={open} onClose={onClose} className="fixed inset-0 z-60 flex items-center justify-center bg-black/65 p-4">
       <Dialog.Panel className="bg-gray-800 text-white p-6 rounded-lg shadow max-w-xl w-full space-y-4 relative">
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-nunito font-semibold text-white">
             {t('siapaKami.modalTitle')}
           </h3>
           <button onClick={onClose} aria-label="Close modal">
-            <X className="w-6 h-6 text-gray-500 hover:text-white" />
+            <X className="w-6 h-6 text-gray-500 hover:text-white cursor-pointer" />
           </button>
         </div>
 
@@ -130,7 +130,7 @@ const DownloadModal = ({ open, onClose }: { open: boolean; onClose: () => void }
             placeholder={t('siapaKami.form.reason')}
             value={form.reason}
             onChange={(e) => setForm({ ...form, reason: e.target.value })}
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm min-h-[80px]"
+            className="w-full border border-gray-300 rounded px-3 py-2 text-sm min-h-[100px]"
             maxLength={300}
           />
 

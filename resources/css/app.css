@@ -46,7 +46,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-border);
+    border-color: border-border border-0;
   }
 
   * {

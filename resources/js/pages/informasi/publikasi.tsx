@@ -2,8 +2,8 @@
 
 import AppLayout from '@/layouts/app-layout'
 import { Head } from '@inertiajs/react'
-import ScrollDownIndicator from '@/components/ScrollDownIndicator'
-import SectionPublikasi from '@/components/SectionPublikasi'
+import ScrollDownIndicator from '@/components/scroll-down-indicator'
+import SectionPublikasi from '@/components/section-publikasi'
 import Footer2 from '@/components/footer-v2'
 import { useTranslation } from 'react-i18next'
 

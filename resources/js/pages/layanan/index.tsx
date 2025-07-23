@@ -8,14 +8,14 @@ import AppLayout from '@/layouts/app-layout'
 import PageSection from '@/layouts/PageSection'
 import useActiveSection from '@/hooks/useActiveSection'
 
-import SectionFotoUdara from '@/components/SectionFotoUdara'
-import SectionIoT from '@/components/SectionIoT'
-import SectionInspeksiTeknik from '@/components/SectionInspeksiTeknik'
-import SectionPenelitian from '@/components/SectionPenelitian'
-import SectionAgrikultur from '@/components/SectionAgrikultur'
-import SectionTelematika from '@/components/SectionTelematika'
-import SectionWebApp from '@/components/SectionWebApp'
-import SectionLayananLainnya from '@/components/SectionLayananLainnya'
+import SectionFotoUdara from '@/components/section-foto-udara'
+import SectionIoT from '@/components/section-iot'
+import SectionInspeksiTeknik from '@/components/section-inspeksi-teknik'
+import SectionPenelitian from '@/components/section-penelitian'
+import SectionAgrikultur from '@/components/section-agrikultur'
+import SectionTelematika from '@/components/section-telematika'
+import SectionWebApp from '@/components/section-web-app'
+import SectionLayananLainnya from '@/components/section-layanan-lainnya'
 
 const sectionKeys = [
   'fotoUdara',
